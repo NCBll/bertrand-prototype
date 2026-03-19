@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS - Pronta para Levantamento - Livraria Bertrand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <style>
+    /* Phone Mockup Styles */
+    .phone-mockup {
+      max-width: 320px;
+      margin: 40px auto;
+      background: #1a1a1a;
+      border-radius: 36px;
+      padding: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .phone-frame {
+      background: #000;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 24px;
+      background: #000;
+      border-radius: 0 0 16px 16px;
+      z-index: 10;
+    }
+
+    .phone-screen {
+      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 580px;
+      padding-top: 32px;
+    }
+
+    .phone-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .phone-time {
+      font-size: 14px;
+    }
+
+    .phone-icons {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .sms-app-header {
+      background: rgba(255,255,255,0.1);
+      padding: 12px 16px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sms-back-btn {
+      color: #0ea5e9;
+      font-size: 20px;
+    }
+
+    .sms-contact-name {
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .sms-contact-number {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .sms-messages {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sms-message {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.4;
+      position: relative;
+    }
+
+    .sms-message.received {
+      background: #374151;
+      color: white;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .sms-message.received.urgent {
+      background: linear-gradient(135deg, #27AE60 0%, #1e8449 100%);
+      box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
+    }
+
+    .sms-message.sent {
+      background: #2563eb;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .sms-time {
+      font-size: 10px;
+      opacity: 0.6;
+      margin-top: 4px;
+    }
+
+    .sms-input-area {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.1);
+      padding: 12px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .sms-input {
+      flex: 1;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 20px;
+      padding: 10px 16px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .sms-input::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .sms-send-btn {
+      width: 36px;
+      height: 36px;
+      background: #2563eb;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .sms-emoji {
+      font-size: 20px;
+    }
+
+    .sms-bold {
+      font-weight: 600;
+    }
+
+    .sms-highlight {
+      background: rgba(255,255,255,0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .notification-dot {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .info-card {
+      background: #e8f5e9;
+      border-left: 4px solid var(--color-green);
+      padding: 20px;
+      border-radius: 4px;
+      margin-top: 32px;
+    }
+
+    .info-card h4 {
+      margin: 0 0 12px 0;
+      color: var(--color-green);
+    }
+
+    .info-card ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .info-card li {
+      margin-bottom: 8px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .comparison-table th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+
+    .comparison-table .check {
+      color: var(--color-green);
+      font-size: 16px;
+    }
+
+    .comparison-table .cross {
+      color: var(--color-red);
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="https://www.bertrand.pt/images/logo-bertrand.svg" alt="Bertrand" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-text" style="display:none;">Bertrand<span class="logo-dot">.</span></span>
+      </a>
+      <div class="search-bar">
+        <input type="search" placeholder="Pesquisar livros, autores...">
+        <button type="button">🔍</button>
+      </div>
+      <div class="header-actions">
+        <a href="conta.html" class="header-btn">👤 Conta</a>
+        <a href="#" class="header-btn">❤️ Lista de desejos</a>
+        <a href="carrinho.html" class="header-btn">
+          🛒 <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <div class="section" style="background: var(--color-light); padding: 24px 0;">
+    <div class="container">
+      <div class="flex items-center gap-2">
+        <a href="acompanhar.html" style="color: var(--color-blue);">← Voltar ao Acompanhamento</a>
+        <span style="color: #999;">|</span>
+        <h1 style="font-size: 20px; margin: 0;">Simulação: SMS - Pronta para Levantamento</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMS Mockup -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Notificação SMS: Encomenda Pronta!</h2>
+        <p class="text-muted">Notificação urgente quando a encomenda fica disponível</p>
+      </div>
+
+      <!-- Phone Mockup -->
+      <div class="phone-mockup">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <!-- Status Bar -->
+            <div class="phone-status-bar">
+              <span class="phone-time">17:00</span>
+              <div class="phone-icons">
+                <span>📶</span>
+                <span>📡</span>
+                <span>🔋</span>
+              </div>
+            </div>
+
+            <!-- SMS App Header -->
+            <div class="sms-app-header">
+              <span class="sms-back-btn">‹</span>
+              <div>
+                <div class="sms-contact-name">Bertrand</div>
+                <div class="sms-contact-number">+351 910 000 000</div>
+              </div>
+            </div>
+
+            <!-- SMS Messages -->
+            <div class="sms-messages">
+              <!-- NEW URGENT MESSAGE -->
+              <div class="sms-message received urgent" style="position: relative;">
+                <div class="notification-dot"></div>
+                <div id="smsReadyTitle">✅ <span class="sms-bold">JÁ PODE LEVANTAR!</span></div>
+                <div style="margin-top: 4px;">A sua encomenda <span class="sms-highlight">BL-2026-001847</span> está PRONTA!</div>
+                <div id="smsReadyLocation" style="margin-top: 4px;">📍 Bertrand Chiado, Lisboa</div>
+                <div id="smsReadyTime" style="margin-top: 4px;">⏰ Aberto até 20h hoje</div>
+                <div id="smsReadyInstruction" style="margin-top: 4px;">Traga este SMS ou o nº da encomenda.</div>
+                <div class="sms-time">17:00</div>
+              </div>
+
+              <!-- Previous messages -->
+              <div class="sms-message received">
+                <div>📚 <span class="sms-bold">Bertrand</span></div>
+                <div style="margin-top: 4px;">A sua encomenda foi confirmada!</div>
+                <div style="margin-top: 4px;">Encomenda: <span class="sms-bold">BL-2026-001847</span></div>
+                <div class="sms-time">Ontem 15:31</div>
+              </div>
+
+              <!-- Sent Message -->
+              <div class="sms-message sent">
+                <div>Obrigado! 👍</div>
+                <div class="sms-time">Ontem 15:32</div>
+              </div>
+            </div>
+
+            <!-- SMS Input Area -->
+            <div class="sms-input-area">
+              <span class="sms-emoji">😊</span>
+              <input type="text" class="sms-input" placeholder="iMessage">
+              <button class="sms-send-btn">↑</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explanation Box -->
+      <div style="max-width: 600px; margin: 32px auto;">
+        <div class="info-card">
+          <h4>📱 Análise: SMS de Notificação "Pronto"</h4>
+          <p style="font-size: 14px; margin-bottom: 12px;"><strong>Porquê SMS para notificações urgentes?</strong></p>
+          <ul>
+            <li><strong>Imediatez:</strong> O cliente é notificado instantaneamente</li>
+            <li><strong>Sem dependência de internet:</strong> SMS funciona sempre</li>
+            <li><strong>Alta taxa de leitura:</strong> 98% dos SMS são lidos em 3 minutos</li>
+            <li><strong>Call-to-action claro:</strong> "Já pode levantar" cria urgência positiva</li>
+            <li><strong>Informação essencial:</strong> Nº encomenda, local, horário</li>
+            <li><strong>Comprovativo digital:</strong> SMS serve como "bilhete" de levantamento</li>
+          </ul>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="card mt-4">
+          <h4 style="margin: 0 0 16px 0;">Email vs SMS para Notificações</h4>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>Email</th>
+                <th>SMS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Taxa de abertura</td>
+                <td>~20%</td>
+                <td><span class="check">✓</span> 98%</td>
+              </tr>
+              <tr>
+                <td>Tempo até leitura</td>
+                <td>Horas/Dias</td>
+                <td><span class="check">✓</span> ~3 min</td>
+              </tr>
+              <tr>
+                <td>Requer internet</td>
+                <td><span class="check">✓</span> Sim</td>
+                <td>Não</td>
+              </tr>
+              <tr>
+                <td>Espaço para detalhes</td>
+                <td><span class="check">✓</span> Ilimitado</td>
+                <td>Limitado (160 chars)</td>
+              </tr>
+              <tr>
+                <td>Uso recomendado</td>
+                <td>Detalhes completos</td>
+                <td><span class="check">✓</span> Alertas urgentes</td>
+              </tr>
+              <tr>
+                <td>Custo por mensagem</td>
+                <td><span class="check">✓</span> ~€0.01</td>
+                <td>~€0.05</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card mt-4" style="background: #fff3e0; border-left: 4px solid var(--color-orange);">
+          <h4 style="margin: 0 0 12px 0;">💡 Melhor Prática: Estratégia Multicanal</h4>
+          <p style="font-size: 13px; margin: 0; line-height: 1.6;">
+            A Bertrand utiliza <strong>ambos os canais</strong>: Email para detalhes completos e comprovativo, SMS para notificação imediata. Esta estratégia combina o baixo custo do email com a eficácia do SMS, garantindo que o cliente recebe a informação pelo canal mais adequado a cada momento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps -->
+  <section class="section" style="background: var(--color-light);">
+    <div class="container text-center">
+      <h2 class="section-title">Continuar a Apresentação</h2>
+      <p class="section-subtitle">Explore os canais de apoio ao cliente e CRM</p>
+      <div class="flex gap-2" style="justify-content: center; margin-top: 24px;">
+        <a href="apoio.html" class="btn btn-accent">Fale com o Livreiro 💬</a>
+        <a href="ajuda.html" class="btn btn-ghost">Ajuda (FAQ) ❓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom" style="text-align: center;">
+      <p class="text-muted" style="font-size: 12px;">© 2026 Grupo Bertrand Círculo</p>
+    </div>
+  </footer>
+
+  <!-- Presentation Mode Nav -->
+  <div class="pres-nav-toggle" onclick="togglePresNav()" title="Modo Apresentação">🎯</div>
+  <div class="pres-nav-menu" id="presNavMenu">
+    <div class="pres-nav-menu-title">Modo Apresentação</div>
+    <div class="pres-nav-menu-links">
+      <a href="index.html">1. Home</a>
+      <a href="produto.html">2. Produto</a>
+      <a href="carrinho.html">3. Carrinho</a>
+      <a href="confirmacao.html">4. Confirmação</a>
+      <a href="email-confirmacao.html">5. Email ✉</a>
+      <a href="sms-confirmacao.html">6. SMS 📱</a>
+      <a href="acompanhar.html">7. Acompanhar</a>
+      <a href="email-pronta.html">8. Email Pronto ✉</a>
+      <a href="sms-pronta.html">9. SMS Pronto 📱</a>
+      <a href="apoio.html">10. Apoio</a>
+      <a href="ajuda.html">11. Ajuda</a>
+      <a href="conta.html">12. Conta</a>
+      <a href="backoffice.html">13. Backoffice</a>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    function togglePresNav() {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+  <script>
+    // Handle delivery method display
+    const deliveryMethod = sessionStorage.getItem('orderDelivery');
+    const orderStore = sessionStorage.getItem('orderStore');
+    const smsReadyTitle = document.getElementById('smsReadyTitle');
+    const smsReadyLocation = document.getElementById('smsReadyLocation');
+    const smsReadyTime = document.getElementById('smsReadyTime');
+    const smsReadyInstruction = document.getElementById('smsReadyInstruction');
+
+    if (deliveryMethod === 'home') {
+      // Show home delivery message
+      if (smsReadyTitle) smsReadyTitle.innerHTML = '✅ <span class="sms-bold">A ENTREGAR!</span>';
+      if (smsReadyLocation) smsReadyLocation.textContent = '🚚 A sua encomenda está a caminho!';
+      if (smsReadyTime) smsReadyTime.textContent = '⏰ Previsão: entrega até ao final do dia';
+      if (smsReadyInstruction) smsReadyInstruction.textContent = 'Certifique-se de que está em casa para receber.';
+    } else if (deliveryMethod === 'store' && orderStore) {
+      // Show store name
+      if (smsReadyLocation) {
+        const storeShort = orderStore.split(' - ')[0];
+        smsReadyLocation.textContent = '📍 ' + storeShort;
+      }
+    }
+  </script>
+</body>
+</html>

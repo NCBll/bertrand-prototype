@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acompanhar Encomenda - Livraria Bertrand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="https://www.bertrand.pt/images/logo-bertrand.svg" alt="Bertrand" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-text" style="display:none;">Bertrand<span class="logo-dot">.</span></span>
+      </a>
+      <div class="search-bar">
+        <input type="search" placeholder="Pesquisar livros, autores...">
+        <button type="button">🔍</button>
+      </div>
+      <div class="header-actions">
+        <a href="conta.html" class="header-btn">👤 Conta</a>
+        <a href="#" class="header-btn">❤️ Lista de desejos</a>
+        <a href="carrinho.html" class="header-btn">
+          🛒 <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <div class="section" style="background: var(--color-light); padding: 24px 0;">
+    <div class="container">
+      <h1>Acompanhar Encomenda</h1>
+      <p class="text-muted">Acompanhe o estado da sua encomenda em tempo real</p>
+    </div>
+  </div>
+
+  <!-- Order Tracking -->
+  <section class="section">
+    <div class="container">
+      <div class="container-narrow">
+        <!-- Order Info Card -->
+        <div class="card mb-4">
+          <div class="flex justify-between items-center" style="flex-wrap: wrap; gap: 16px;">
+            <div>
+              <h3 class="card-title" style="margin-bottom: 4px;">Encomenda BL-2026-001847</h3>
+              <p class="text-muted" style="font-size: 14px;">Realizada em 23 de Fevereiro de 2026</p>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 24px; font-weight: 700; color: var(--color-red);">€16.19</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="card">
+          <h3 class="card-title mb-4">Estado da Encomenda</h3>
+
+          <div class="timeline">
+            <div class="timeline-step completed">
+              <div class="timeline-dot">✓</div>
+              <div class="timeline-content">
+                <div class="timeline-label">Encomenda registada</div>
+                <div class="timeline-date">23/02/2026 15:30</div>
+                <div class="timeline-desc">A sua encomenda foi recebida e está a ser processada.</div>
+              </div>
+            </div>
+            <div class="timeline-step completed">
+              <div class="timeline-dot">✓</div>
+              <div class="timeline-content">
+                <div class="timeline-label">Pagamento confirmado</div>
+                <div class="timeline-date">23/02/2026 15:31</div>
+                <div class="timeline-desc">O pagamento foi validado com sucesso.</div>
+              </div>
+            </div>
+            <div class="timeline-step active" id="stepPreparing">
+              <div class="timeline-dot pulse">⏳</div>
+              <div class="timeline-content">
+                <div class="timeline-label">Em preparação</div>
+                <div class="timeline-date">Em curso</div>
+                <div class="timeline-desc">A separar os livros na livraria selecionada.</div>
+              </div>
+            </div>
+            <div class="timeline-step" id="stepReady">
+              <div class="timeline-dot">📚</div>
+              <div class="timeline-content">
+                <div class="timeline-label">Pronta para levantamento</div>
+                <div class="timeline-date">Aguardando</div>
+                <div class="timeline-desc">A sua encomenda está pronta para ser levantada.</div>
+              </div>
+            </div>
+            <div class="timeline-step" id="stepPicked">
+              <div class="timeline-dot">📦</div>
+              <div class="timeline-content">
+                <div class="timeline-label">Levantada</div>
+                <div class="timeline-date">Aguardando</div>
+                <div class="timeline-desc">Encomenda entregue ao cliente.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo Control -->
+          <div class="alert alert-info mt-4" style="background: #e3f2fd; border-left: 4px solid var(--color-blue);">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <span>🎮</span>
+              <div style="flex: 1;">
+                <strong>Modo Apresentação:</strong> Clique no botão abaixo para simular a evolução da encomenda para o estado "Pronta para levantamento".
+              </div>
+            </div>
+            <button onclick="markAsReady()" class="btn btn-accent mt-2" style="width: 100%;">
+              📚 Simular: Encomenda Pronta para Levantamento
+            </button>
+          </div>
+
+          <!-- Pickup Store -->
+          <div class="mt-4" id="deliveryInfoSection" style="padding: 16px; background: var(--color-light); border-radius: 4px;">
+            <h4 id="deliveryInfoTitle" style="font-size: 14px; color: var(--color-gray); margin-bottom: 8px;">Local de Levantamento</h4>
+            <div id="deliveryInfoContent" style="font-size: 16px; font-weight: 500;">
+              📚 Livraria Bertrand Chiado - Lisboa
+            </div>
+            <p id="deliveryInfoDetails" class="text-muted mt-2" style="font-size: 13px;">
+              Rua Garrett, 73-75, 1200-205 Lisboa<br>
+              Horário: Seg-Sáb 10h00-20h00 | Dom 14h00-19h30
+            </p>
+          </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="card mt-4">
+          <h3 class="card-title">Itens da Encomenda</h3>
+          <div style="padding: 16px 0; border-bottom: 1px solid var(--border-light);">
+            <div class="flex gap-3">
+              <img src="https://img.bertrand.pt/images/educar-sem-pressa-filipa-malo-franco/NDV8MjU1MzQ5ODZ8MjE3ODQ5NjB8MTY0OTA1ODEyNjAwMHx3ZWJw/80x&ctx=0" alt="Educar sem Pressa - Filipa Malo Franco" style="border-radius: 2px; width: 60px; height: 90px; object-fit: cover;">
+              <div style="flex: 1;">
+                <h4 style="font-size: 14px; margin-bottom: 4px;">Educar sem Pressa</h4>
+                <p style="font-size: 12px; color: var(--color-gray);">Filipa Malo Franco</p>
+                <div style="font-size: 14px; font-weight: 600; color: var(--color-red);">€16.19</div>
+              </div>
+              <div style="font-size: 14px; color: var(--color-gray);">x1</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="card mt-4">
+          <h3 class="card-title">Dados de Contacto</h3>
+          <div style="padding: 8px 0;">
+            <div style="font-size: 14px;">
+              <strong>Nome:</strong> João Silva
+            </div>
+          </div>
+          <div style="padding: 8px 0;">
+            <div style="font-size: 14px;">
+              <strong>Email:</strong> joao.silva@email.pt
+            </div>
+          </div>
+          <div style="padding: 8px 0;">
+            <div style="font-size: 14px;">
+              <strong>Telemóvel:</strong> +351 912 345 678
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications Preview -->
+        <div id="notificationsPreview" class="card mt-4 hidden" style="background: #e8f5e9; border: 2px solid var(--color-green);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <span style="font-size: 32px;">📧📱</span>
+            <div>
+              <h3 style="margin: 0; color: var(--color-green);">Notificações Enviadas!</h3>
+              <p class="text-muted" style="margin: 4px 0 0 0; font-size: 13px;">O cliente recebeu email e SMS a avisar que a encomenda está pronta.</p>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <a href="email-pronta.html" class="btn btn-success" style="flex: 1;">📧 Ver Email</a>
+            <a href="sms-pronta.html" class="btn btn-success" style="flex: 1;">📱 Ver SMS</a>
+          </div>
+        </div>
+
+        <!-- Support -->
+        <div class="card mt-4">
+          <h3 class="card-title">Precisa de Ajuda?</h3>
+          <p style="font-size: 14px; margin-bottom: 16px;">Contacte-nos através dos seguintes canais:</p>
+          <div class="grid-3">
+            <a href="apoio.html" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+              <span style="font-size: 24px;">💬</span>
+              <span>Fale com o Livreiro</span>
+            </a>
+            <a href="ajuda.html" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+              <span style="font-size: 24px;">❓</span>
+              <span>FAQ / Ajuda</span>
+            </a>
+            <a href="conta.html" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+              <span style="font-size: 24px;">👤</span>
+              <span>Área de Cliente</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul class="footer-links">
+          <li><a href="apoio.html">Fale com o seu Livreiro</a></li>
+          <li><a href="ajuda.html">Ajuda (FAQ)</a></li>
+          <li><a href="acompanhar.html">Acompanhar Encomenda</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="text-muted" style="font-size: 12px;">© 2026 Grupo Bertrand Círculo</p>
+    </div>
+  </footer>
+
+  <!-- Presentation Mode Nav -->
+  <div class="pres-nav-toggle" onclick="togglePresNav()" title="Modo Apresentação">🎯</div>
+  <div class="pres-nav-menu" id="presNavMenu">
+    <div class="pres-nav-menu-title">Modo Apresentação</div>
+    <div class="pres-nav-menu-links">
+      <a href="index.html">1. Home</a>
+      <a href="produto.html">2. Produto</a>
+      <a href="carrinho.html">3. Carrinho</a>
+      <a href="confirmacao.html">4. Confirmação</a>
+      <a href="email-confirmacao.html">5. Email ✉</a>
+      <a href="sms-confirmacao.html">6. SMS 📱</a>
+      <a href="acompanhar.html">7. Acompanhar</a>
+      <a href="email-pronta.html">8. Email Pronto ✉</a>
+      <a href="sms-pronta.html">9. SMS Pronto 📱</a>
+      <a href="apoio.html">10. Apoio</a>
+      <a href="ajuda.html">11. Ajuda</a>
+      <a href="conta.html">12. Conta</a>
+      <a href="backoffice.html">13. Backoffice</a>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    function togglePresNav() {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+  <script>
+    let currentStep = 2; // 0=pending, 1=payment, 2=preparing, 3=ready, 4=pickedup
+
+    function markAsReady() {
+      // Update state
+      currentStep = 3;
+
+      // Update timeline
+      const preparingStep = document.getElementById('stepPreparing');
+      const readyStep = document.getElementById('stepReady');
+
+      preparingStep.classList.remove('active');
+      preparingStep.classList.add('completed');
+      preparingStep.querySelector('.timeline-dot').textContent = '✓';
+      preparingStep.querySelector('.timeline-dot').classList.remove('pulse');
+
+      readyStep.classList.add('active');
+      readyStep.querySelector('.timeline-dot').innerHTML = '⏳<span class="pulse-ring"></span>';
+
+      // Update dates
+      preparingStep.querySelector('.timeline-date').textContent = '23/02/2026 16:45';
+      preparingStep.querySelector('.timeline-desc').textContent = 'Livros separados com sucesso.';
+
+      readyStep.querySelector('.timeline-date').textContent = '23/02/2026 17:00';
+      readyStep.querySelector('.timeline-desc').textContent = 'A sua encomenda está pronta para levantamento!';
+
+      // Show notifications preview
+      document.getElementById('notificationsPreview').classList.remove('hidden');
+
+      // Show success message
+      showNotification('Encomenda marcada como PRONTA! Notificações enviadas.');
+
+      // Scroll to notifications
+      document.getElementById('notificationsPreview').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Load order from URL if provided
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('order');
+    if (orderId && state) {
+      // Order would be loaded here
+    }
+
+    // Handle delivery method display
+    const deliveryMethod = sessionStorage.getItem('orderDelivery');
+    const orderStore = sessionStorage.getItem('orderStore');
+    const deliveryTitle = document.getElementById('deliveryInfoTitle');
+    const deliveryContent = document.getElementById('deliveryInfoContent');
+    const deliveryDetails = document.getElementById('deliveryInfoDetails');
+
+    if (deliveryMethod === 'home') {
+      // Show home delivery info
+      if (deliveryTitle) deliveryTitle.textContent = 'Método de Entrega';
+      if (deliveryContent) deliveryContent.innerHTML = '🚚 Entrega ao Domicílio';
+      if (deliveryDetails) deliveryDetails.innerHTML = 'Previsão de entrega: 2-3 dias úteis<br>Encomenda será entregue no morada indicada.';
+
+      // Update timeline labels for home delivery
+      const readyLabel = document.querySelector('#stepReady .timeline-label');
+      const readyDesc = document.querySelector('#stepReady .timeline-desc');
+      if (readyLabel) readyLabel.textContent = 'Em rota de entrega';
+      if (readyDesc) readyDesc.textContent = 'A sua encomenda está a caminho do seu endereço.';
+
+      const pickedLabel = document.querySelector('#stepPicked .timeline-label');
+      const pickedDesc = document.querySelector('#stepPicked .timeline-desc');
+      if (pickedLabel) pickedLabel.textContent = 'Entregue';
+      if (pickedDesc) pickedDesc.textContent = 'Encomenda entregue com sucesso.';
+    } else if (deliveryMethod === 'store' && orderStore) {
+      // Show selected store
+      if (deliveryContent) deliveryContent.innerHTML = '📚 ' + orderStore;
+    }
+  </script>
+</body>
+</html>

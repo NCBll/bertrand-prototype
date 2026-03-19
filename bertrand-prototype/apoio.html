@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fale com o seu Livreiro - Livraria Bertrand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="https://www.bertrand.pt/images/logo-bertrand.svg" alt="Bertrand" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-text" style="display:none;">Bertrand<span class="logo-dot">.</span></span>
+      </a>
+      <div class="search-bar">
+        <input type="search" placeholder="Pesquisar livros, autores...">
+        <button type="button">🔍</button>
+      </div>
+      <div class="header-actions">
+        <a href="conta.html" class="header-btn">👤 Conta</a>
+        <a href="#" class="header-btn">❤️ Lista de desejos</a>
+        <a href="carrinho.html" class="header-btn">
+          🛒 <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+    <nav class="nav-main">
+      <ul class="nav-list">
+        <li><a href="index.html">Novidades</a></li>
+        <li><a href="index.html">Literatura</a></li>
+        <li><a href="index.html">Infantis e Juvenis</a></li>
+        <li><a href="index.html">Livros em Inglês</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Title -->
+  <div class="section" style="background: var(--color-light); padding: 24px 0;">
+    <div class="container">
+      <h1>Fale com o seu Livreiro</h1>
+      <p class="text-muted">Estamos aqui para ajudar. Escolha o canal que preferir.</p>
+    </div>
+  </div>
+
+  <!-- Contact Channels -->
+  <section class="section">
+    <div class="container">
+      <div class="container-narrow">
+        <!-- Contact Options -->
+        <div class="grid-2">
+          <!-- WhatsApp -->
+          <div class="card text-center" style="padding: 32px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white;">
+            <div style="font-size: 48px; margin-bottom: 16px;">💬</div>
+            <h3 style="color: white; margin-bottom: 8px;">WhatsApp</h3>
+            <p style="opacity: 0.9; margin-bottom: 16px;">Resposta rápida em tempo real</p>
+            <div style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">+351 910 000 000</div>
+            <button class="btn" style="background: white; color: #25D366; border: none;">Iniciar Conversa</button>
+            <p style="font-size: 12px; margin-top: 12px; opacity: 0.8;">Disponível Seg-Sex 9h-20h</p>
+          </div>
+
+          <!-- Live Chat -->
+          <div class="card text-center" style="padding: 32px; background: linear-gradient(135deg, #337AB7 0%, #1a5d8f 100%); color: white;">
+            <div style="font-size: 48px; margin-bottom: 16px;">🗨️</div>
+            <h3 style="color: white; margin-bottom: 8px;">Chat Online</h3>
+            <p style="opacity: 0.9; margin-bottom: 16px;">Conversa em tempo real no site</p>
+            <button class="btn" style="background: white; color: #337AB7; border: none;" onclick="startChat()">Iniciar Chat</button>
+            <p style="font-size: 12px; margin-top: 12px; opacity: 0.8;">Disponível Seg-Sex 9h-20h</p>
+          </div>
+        </div>
+
+        <div class="grid-2 mt-4">
+          <!-- Phone -->
+          <div class="card" style="padding: 24px;">
+            <div class="flex items-center gap-3" style="margin-bottom: 16px;">
+              <div style="font-size: 32px;">📞</div>
+              <div>
+                <h3 style="margin: 0;">Telefone</h3>
+                <p class="text-muted" style="font-size: 13px; margin: 0;">Fale com a nossa equipa</p>
+              </div>
+            </div>
+            <div style="font-size: 20px; font-weight: 600; color: var(--color-blue); margin-bottom: 8px;">707 103 333</div>
+            <p class="text-muted" style="font-size: 13px;">Chamada para rede fixa nacional</p>
+            <p style="font-size: 12px; margin-top: 12px;">Disponível Seg-Sex 9h-19h</p>
+          </div>
+
+          <!-- Email -->
+          <div class="card" style="padding: 24px;">
+            <div class="flex items-center gap-3" style="margin-bottom: 16px;">
+              <div style="font-size: 32px;">📧</div>
+              <div>
+                <h3 style="margin: 0;">Email</h3>
+                <p class="text-muted" style="font-size: 13px; margin: 0;">Resposta em 24-48h</p>
+              </div>
+            </div>
+            <div style="font-size: 18px; font-weight: 600; color: var(--color-blue); margin-bottom: 8px;">apoio@bertrand.pt</div>
+            <p class="text-muted" style="font-size: 13px;">Para dúvidas, encomendas ou sugestões</p>
+            <button class="btn btn-ghost mt-2">Enviar Email →</button>
+          </div>
+        </div>
+
+        <div class="grid-2 mt-4">
+          <!-- Contact Form -->
+          <div class="card" style="padding: 24px;">
+            <h3 class="card-title">Formulário de Contacto</h3>
+            <p class="text-muted" style="font-size: 13px; margin-bottom: 16px;">Respondemos em 24-48 horas úteis</p>
+
+            <form id="contactForm">
+              <div class="form-group">
+                <label class="form-label">Assunto *</label>
+                <select class="form-select">
+                  <option value="">Selecione...</option>
+                  <option>Informações sobre encomendas</option>
+                  <option>Devoluções e trocas</option>
+                  <option>Disponibilidade de livros</option>
+                  <option>Problemas com o site</option>
+                  <option>Clube de Leitores</option>
+                  <option>Outros assuntos</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Nome *</label>
+                <input type="text" class="form-input" placeholder="O seu nome" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-input" placeholder="seu.email@exemplo.pt" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Número da Encomenda (opcional)</label>
+                <input type="text" class="form-input" placeholder="Ex: BL-2026-001847">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Mensagem *</label>
+                <textarea class="form-input" rows="4" placeholder="Descreva a sua dúvida ou problema..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-accent" style="width: 100%;">Enviar Mensagem</button>
+            </form>
+
+            <div id="contactSuccess" style="display: none; text-align: center; padding: 24px;">
+              <div style="font-size: 48px; margin-bottom: 12px;">✓</div>
+              <h3>Mensagem Enviada!</h3>
+              <p class="text-muted">Entraremos em contacto em breve.</p>
+            </div>
+          </div>
+
+          <!-- Store Locator -->
+          <div class="card" style="padding: 24px;">
+            <h3 class="card-title">Visite uma Livraria</h3>
+            <p class="text-muted" style="font-size: 13px; margin-bottom: 16px;">Encontre a livraria mais próxima</p>
+
+            <div class="form-group">
+              <label class="form-label">Localização</label>
+              <select class="form-select">
+                <option>Lisboa</option>
+                <option>Porto</option>
+                <option>Braga</option>
+                <option>Coimbra</option>
+                <option>Faro</option>
+              </select>
+            </div>
+
+            <div style="max-height: 250px; overflow-y: auto;">
+              <div style="padding: 12px 0; border-bottom: 1px solid var(--border-light);">
+                <div style="font-weight: 500;">Livraria Bertrand Chiado</div>
+                <p style="font-size: 12px; color: var(--color-gray); margin: 4px 0;">Rua Garrett, 73-75, Lisboa</p>
+                <p style="font-size: 12px;">Seg-Sáb: 10h-20h | Dom: 14h-19h30</p>
+              </div>
+              <div style="padding: 12px 0; border-bottom: 1px solid var(--border-light);">
+                <div style="font-weight: 500;">Livraria Bertrand Colombo</div>
+                <p style="font-size: 12px; color: var(--color-gray); margin: 4px 0;">CC Colombo, Lisboa</p>
+                <p style="font-size: 12px;">Seg-Sáb: 10h-23h | Dom: 10h-21h</p>
+              </div>
+              <div style="padding: 12px 0; border-bottom: 1px solid var(--border-light);">
+                <div style="font-weight: 500;">Livraria Bertrand Gaia</div>
+                <p style="font-size: 12px; color: var(--color-gray); margin: 4px 0;">Arrábida Shopping, Vila Nova de Gaia</p>
+                <p style="font-size: 12px;">Seg-Sáb: 10h-23h | Dom: 10h-21h</p>
+              </div>
+            </div>
+
+            <button class="btn btn-ghost mt-2" style="width: 100%;">Ver Todas as Livrarias →</button>
+          </div>
+        </div>
+
+        <!-- Response Time Promise -->
+        <div class="card mt-4" style="background: #e3f2fd; border-left: 4px solid var(--color-blue);">
+          <div class="flex items-center gap-3">
+            <div style="font-size: 32px;">⏱️</div>
+            <div style="flex: 1;">
+              <h4 style="margin: 0 0 4px 0;">Compromisso de Resposta</h4>
+              <p style="font-size: 14px; margin: 0;">
+                <strong>WhatsApp/Chat:</strong> Resposta em média de 5 minutos<br>
+                <strong>Email:</strong> Resposta em 24-48 horas úteis<br>
+                <strong>Telefone:</strong> Tempo de espera médio de 2 minutos
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="card mt-4">
+          <h3 class="card-title">Siga-nos nas Redes Sociais</h3>
+          <div class="grid-4 text-center">
+            <a href="#" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+              <span style="font-size: 24px;">📘</span>
+              <span style="font-size: 12px;">Facebook</span>
+            </a>
+            <a href="#" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+              <span style="font-size: 24px;">📷</span>
+              <span style="font-size: 12px;">Instagram</span>
+            </a>
+            <a href="#" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+              <span style="font-size: 24px;">🎵</span>
+              <span style="font-size: 12px;">TikTok</span>
+            </a>
+            <a href="#" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+              <span style="font-size: 24px;">📺</span>
+              <span style="font-size: 12px;">YouTube</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul class="footer-links">
+          <li><a href="apoio.html">Fale com o seu Livreiro</a></li>
+          <li><a href="ajuda.html">Ajuda (FAQ)</a></li>
+          <li><a href="acompanhar.html">Acompanhar Encomenda</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>A Conta</h4>
+        <ul class="footer-links">
+          <li><a href="conta.html">Área de Cliente</a></li>
+          <li><a href="#">Clube de Leitores</a></li>
+          <li><a href="#">Lista de Desejos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="text-muted" style="font-size: 12px;">© 2026 Grupo Bertrand Círculo</p>
+    </div>
+  </footer>
+
+  <!-- Presentation Mode Nav -->
+  <div class="pres-nav-toggle" onclick="togglePresNav()" title="Modo Apresentação">🎯</div>
+  <div class="pres-nav-menu" id="presNavMenu">
+    <div class="pres-nav-menu-title">Modo Apresentação</div>
+    <div class="pres-nav-menu-links">
+      <a href="index.html">1. Home</a>
+      <a href="produto.html">2. Produto</a>
+      <a href="carrinho.html">3. Carrinho</a>
+      <a href="confirmacao.html">4. Confirmação</a>
+      <a href="email-confirmacao.html">5. Email ✉</a>
+      <a href="sms-confirmacao.html">6. SMS 📱</a>
+      <a href="acompanhar.html">7. Acompanhar</a>
+      <a href="email-pronta.html">8. Email Pronto ✉</a>
+      <a href="sms-pronta.html">9. SMS Pronto 📱</a>
+      <a href="apoio.html">10. Apoio</a>
+      <a href="ajuda.html">11. Ajuda</a>
+      <a href="conta.html">12. Conta</a>
+      <a href="backoffice.html">13. Backoffice</a>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    function togglePresNav() {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+  <script>
+    function startChat() {
+      showNotification('Chat iniciado! Um livreiro entrará em breve.');
+    }
+
+    // Contact form is handled in app.js
+  </script>
+</body>
+</html>

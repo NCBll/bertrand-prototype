@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área de Cliente - Livraria Bertrand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <style>
+    .account-layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .account-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .account-nav {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .account-nav-header {
+      background: var(--color-light);
+      padding: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .account-nav-header h4 {
+      margin: 0;
+      font-size: 14px;
+      color: var(--color-gray);
+    }
+
+    .account-nav-item {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: var(--color-black);
+      border-bottom: 1px solid var(--border-light);
+      transition: background 0.2s;
+    }
+
+    .account-nav-item:hover,
+    .account-nav-item.active {
+      background: #e3f2fd;
+      color: var(--color-blue);
+    }
+
+    .account-nav-item:last-child {
+      border-bottom: none;
+    }
+
+    .loyalty-card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      border-radius: 12px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loyalty-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    }
+
+    .loyalty-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .loyalty-card-title {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .loyalty-points {
+      font-size: 36px;
+      font-weight: 700;
+      color: #FFD700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .loyalty-points-label {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .loyalty-progress {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      height: 8px;
+      margin: 16px 0;
+      position: relative;
+    }
+
+    .loyalty-progress-fill {
+      background: linear-gradient(90deg, #FFD700, #FFA500);
+      height: 100%;
+      border-radius: 10px;
+      width: 49%;
+    }
+
+    .loyalty-next {
+      font-size: 12px;
+      opacity: 0.8;
+      position: relative;
+    }
+
+    .order-card {
+      background: white;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: box-shadow 0.2s;
+    }
+
+    .order-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .order-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .order-number {
+      font-weight: 600;
+      color: var(--color-blue);
+    }
+
+    .order-date {
+      font-size: 13px;
+      color: var(--color-gray);
+    }
+
+    .order-status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .order-status.preparing {
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    .order-status.ready {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .order-status.delivered {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
+    .wishlist-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .wishlist-item img {
+      width: 60px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .reading-goal {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .reading-goal-progress {
+      width: 150px;
+      height: 150px;
+      margin: 16px auto;
+      border-radius: 50%;
+      background: conic-gradient(var(--color-green) 0deg 180deg, var(--color-light) 180deg 360deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reading-goal-inner {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="https://www.bertrand.pt/images/logo-bertrand.svg" alt="Bertrand" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-text" style="display:none;">Bertrand<span class="logo-dot">.</span></span>
+      </a>
+      <div class="search-bar">
+        <input type="search" placeholder="Pesquisar livros, autores...">
+        <button type="button">🔍</button>
+      </div>
+      <div class="header-actions">
+        <a href="conta.html" class="header-btn" style="color: var(--color-blue);">👤 Conta</a>
+        <a href="#" class="header-btn">❤️ Lista de desejos</a>
+        <a href="carrinho.html" class="header-btn">
+          🛒 <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+    <nav class="nav-main">
+      <ul class="nav-list">
+        <li><a href="index.html">Novidades</a></li>
+        <li><a href="index.html">Literatura</a></li>
+        <li><a href="index.html">Infantis e Juvenis</a></li>
+        <li><a href="index.html">Livros em Inglês</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Title -->
+  <div class="section" style="background: var(--color-light); padding: 24px 0;">
+    <div class="container">
+      <h1>Área de Cliente</h1>
+      <p class="text-muted">Bem-vindo, João Silva</p>
+    </div>
+  </div>
+
+  <!-- Account Content -->
+  <section class="section">
+    <div class="container">
+      <div class="account-layout">
+        <!-- Sidebar Navigation -->
+        <div class="account-nav">
+          <div class="account-nav-header">
+            <h4>O MEU MENU</h4>
+          </div>
+          <a href="#" class="account-nav-item active">📊 Visão Geral</a>
+          <a href="#" class="account-nav-item">📦 As Minhas Encomendas</a>
+          <a href="#" class="account-nav-item">❤️ Lista de Desejos</a>
+          <a href="#" class="account-nav-item">👤 Dados Pessoais</a>
+          <a href="#" class="account-nav-item">📍 Moradas</a>
+          <a href="#" class="account-nav-item">💳 Métodos de Pagamento</a>
+          <a href="#" class="account-nav-item">🎁 Clube de Leitores</a>
+          <a href="#" class="account-nav-item">⚙️ Definições</a>
+          <a href="#" class="account-nav-item">🚪 Sair</a>
+        </div>
+
+        <!-- Main Content -->
+        <div>
+          <!-- Loyalty Card -->
+          <div class="loyalty-card mb-4">
+            <div class="loyalty-card-header">
+              <div>
+                <div class="loyalty-card-title">CLUBE DE LEITORES</div>
+                <div style="font-size: 20px; font-weight: 500;">João Silva</div>
+              </div>
+              <div style="font-size: 32px;">📚</div>
+            </div>
+            <div class="loyalty-points">2,450</div>
+            <div class="loyalty-points-label">pontos disponíveis</div>
+            <div class="loyalty-progress">
+              <div class="loyalty-progress-fill"></div>
+            </div>
+            <div class="loyalty-next">Faltam 50 pontos para o próximo voucher de €5</div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="grid-4 mb-4">
+            <div class="card text-center" style="padding: 16px;">
+              <div style="font-size: 24px; margin-bottom: 4px;">📦</div>
+              <div style="font-size: 24px; font-weight: 700; color: var(--color-blue);">1</div>
+              <div style="font-size: 12px; color: var(--color-gray);">Encomendas Ativas</div>
+            </div>
+            <div class="card text-center" style="padding: 16px;">
+              <div style="font-size: 24px; margin-bottom: 4px;">📚</div>
+              <div style="font-size: 24px; font-weight: 700; color: var(--color-green);">23</div>
+              <div style="font-size: 12px; color: var(--color-gray);">Livros Comprados</div>
+            </div>
+            <div class="card text-center" style="padding: 16px;">
+              <div style="font-size: 24px; margin-bottom: 4px;">❤️</div>
+              <div style="font-size: 24px; font-weight: 700; color: var(--color-red);">5</div>
+              <div style="font-size: 12px; color: var(--color-gray);">Lista de Desejos</div>
+            </div>
+            <div class="card text-center" style="padding: 16px;">
+              <div style="font-size: 24px; margin-bottom: 4px;">€</div>
+              <div style="font-size: 24px; font-weight: 700; color: var(--color-orange);">24.50</div>
+              <div style="font-size: 12px; color: var(--color-gray);">Poupança Total</div>
+            </div>
+          </div>
+
+          <!-- Active Orders -->
+          <div class="card mb-4">
+            <h3 class="card-title">Encomendas Ativas</h3>
+
+            <div class="order-card">
+              <div class="order-card-header">
+                <div>
+                  <div class="order-number">BL-2026-001847</div>
+                  <div class="order-date">23/02/2026 • 1 item • €16.19</div>
+                </div>
+                <span class="order-status preparing">Em preparação</span>
+              </div>
+              <div class="flex items-center gap-2" style="margin-bottom: 12px;">
+                <img src="https://img.bertrand.pt/images/educar-sem-pressa-filipa-malo-franco/NDV8MjU1MzQ5ODZ8MjE3ODQ5NjB8MTY0OTA1ODEyNjAwMHx3ZWJw/60x&ctx=0" style="border-radius: 2px; width: 40px; height: 60px; object-fit: cover;">
+                <div style="flex: 1;">
+                  <div style="font-size: 14px; font-weight: 500;">Educar sem Pressa</div>
+                  <div style="font-size: 12px; color: var(--color-gray);">Filipa Malo Franco</div>
+                </div>
+              </div>
+              <div style="font-size: 13px; color: var(--color-gray); margin-bottom: 12px;">
+                📍 Levantamento: Bertrand Chiado, Lisboa
+              </div>
+              <div class="flex gap-2">
+                <a href="acompanhar.html" class="btn btn-accent" style="flex: 1; font-size: 13px;">Acompanhar</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reading Goal -->
+          <div class="card mb-4">
+            <h3 class="card-title">Desafio de Leitura 2026</h3>
+            <div class="reading-goal">
+              <p style="font-size: 14px; color: var(--color-gray); margin-bottom: 8px;">Livros lidos este ano</p>
+              <div class="reading-goal-progress">
+                <div class="reading-goal-inner">
+                  <div style="font-size: 32px; font-weight: 700; color: var(--color-green);">12</div>
+                  <div style="font-size: 12px; color: var(--color-gray);">de 24</div>
+                </div>
+              </div>
+              <p style="font-size: 13px;">Ótimo progresso! Já leu <strong>50%</strong> do seu objetivo anual.</p>
+            </div>
+          </div>
+
+          <!-- Recent Orders -->
+          <div class="card">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="card-title" style="margin: 0;">Encomendas Anteriores</h3>
+              <a href="#" style="font-size: 13px; color: var(--color-blue);">Ver todas →</a>
+            </div>
+
+            <div style="padding: 12px 0; border-bottom: 1px solid var(--border-light);">
+              <div class="flex justify-between items-center">
+                <div>
+                  <div style="font-weight: 500;">BL-2026-001820</div>
+                  <div style="font-size: 12px; color: var(--color-gray);">15/02/2026 • 2 livros</div>
+                </div>
+                <div style="text-align: right;">
+                  <span class="order-status delivered">✓ Entregue</span>
+                  <div style="font-size: 13px; font-weight: 600;">€32.50</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 12px 0; border-bottom: 1px solid var(--border-light);">
+              <div class="flex justify-between items-center">
+                <div>
+                  <div style="font-weight: 500;">BL-2026-001755</div>
+                  <div style="font-size: 12px; color: var(--color-gray);">01/02/2026 • 1 livro</div>
+                </div>
+                <div style="text-align: right;">
+                  <span class="order-status delivered">✓ Entregue</span>
+                  <div style="font-size: 13px; font-weight: 600;">€18.90</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 12px 0;">
+              <div class="flex justify-between items-center">
+                <div>
+                  <div style="font-weight: 500;">BL-2026-001690</div>
+                  <div style="font-size: 12px; color: var(--color-gray);">20/01/2026 • 3 livros</div>
+                </div>
+                <div style="text-align: right;">
+                  <span class="order-status delivered">✓ Entregue</span>
+                  <div style="font-size: 13px; font-weight: 600;">€45.70</div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-ghost" style="width: 100%; margin-top: 16px;">Ver Todas as Encomendas</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul class="footer-links">
+          <li><a href="apoio.html">Fale com o seu Livreiro</a></li>
+          <li><a href="ajuda.html">Ajuda (FAQ)</a></li>
+          <li><a href="acompanhar.html">Acompanhar Encomenda</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>A Conta</h4>
+        <ul class="footer-links">
+          <li><a href="conta.html">Área de Cliente</a></li>
+          <li><a href="#">Clube de Leitores</a></li>
+          <li><a href="#">Lista de Desejos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="text-muted" style="font-size: 12px;">© 2026 Grupo Bertrand Círculo</p>
+    </div>
+  </footer>
+
+  <!-- Presentation Mode Nav -->
+  <div class="pres-nav-toggle" onclick="togglePresNav()" title="Modo Apresentação">🎯</div>
+  <div class="pres-nav-menu" id="presNavMenu">
+    <div class="pres-nav-menu-title">Modo Apresentação</div>
+    <div class="pres-nav-menu-links">
+      <a href="index.html">1. Home</a>
+      <a href="produto.html">2. Produto</a>
+      <a href="carrinho.html">3. Carrinho</a>
+      <a href="confirmacao.html">4. Confirmação</a>
+      <a href="email-confirmacao.html">5. Email ✉</a>
+      <a href="sms-confirmacao.html">6. SMS 📱</a>
+      <a href="acompanhar.html">7. Acompanhar</a>
+      <a href="email-pronta.html">8. Email Pronto ✉</a>
+      <a href="sms-pronta.html">9. SMS Pronto 📱</a>
+      <a href="apoio.html">10. Apoio</a>
+      <a href="ajuda.html">11. Ajuda</a>
+      <a href="conta.html">12. Conta</a>
+      <a href="backoffice.html">13. Backoffice</a>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    function togglePresNav() {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS de Confirmação - Livraria Bertrand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <style>
+    /* Phone Mockup Styles */
+    .phone-mockup {
+      max-width: 320px;
+      margin: 40px auto;
+      background: #1a1a1a;
+      border-radius: 36px;
+      padding: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .phone-frame {
+      background: #000;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 24px;
+      background: #000;
+      border-radius: 0 0 16px 16px;
+      z-index: 10;
+    }
+
+    .phone-screen {
+      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 580px;
+      padding-top: 32px;
+    }
+
+    .phone-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .phone-time {
+      font-size: 14px;
+    }
+
+    .phone-icons {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .sms-app-header {
+      background: rgba(255,255,255,0.1);
+      padding: 12px 16px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sms-back-btn {
+      color: #0ea5e9;
+      font-size: 20px;
+    }
+
+    .sms-contact-name {
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .sms-contact-number {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .sms-messages {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sms-message {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.4;
+      position: relative;
+    }
+
+    .sms-message.received {
+      background: #374151;
+      color: white;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .sms-message.sent {
+      background: #2563eb;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .sms-time {
+      font-size: 10px;
+      opacity: 0.6;
+      margin-top: 4px;
+    }
+
+    .sms-input-area {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.1);
+      padding: 12px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .sms-input {
+      flex: 1;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 20px;
+      padding: 10px 16px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .sms-input::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .sms-send-btn {
+      width: 36px;
+      height: 36px;
+      background: #2563eb;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .sms-emoji {
+      font-size: 20px;
+    }
+
+    .sms-bold {
+      font-weight: 600;
+      color: #60a5fa;
+    }
+
+    .info-card {
+      background: #e3f2fd;
+      border-left: 4px solid var(--color-blue);
+      padding: 20px;
+      border-radius: 4px;
+      margin-top: 32px;
+    }
+
+    .info-card h4 {
+      margin: 0 0 12px 0;
+      color: var(--color-blue);
+    }
+
+    .info-card ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .info-card li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="https://www.bertrand.pt/images/logo-bertrand.svg" alt="Bertrand" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-text" style="display:none;">Bertrand<span class="logo-dot">.</span></span>
+      </a>
+      <div class="search-bar">
+        <input type="search" placeholder="Pesquisar livros, autores...">
+        <button type="button">🔍</button>
+      </div>
+      <div class="header-actions">
+        <a href="conta.html" class="header-btn">👤 Conta</a>
+        <a href="#" class="header-btn">❤️ Lista de desejos</a>
+        <a href="carrinho.html" class="header-btn">
+          🛒 <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <div class="section" style="background: var(--color-light); padding: 24px 0;">
+    <div class="container">
+      <div class="flex items-center gap-2">
+        <a href="confirmacao.html" style="color: var(--color-blue);">← Voltar à Confirmação</a>
+        <span style="color: #999;">|</span>
+        <h1 style="font-size: 20px; margin: 0;">Simulação: SMS de Confirmação</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMS Mockup -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Notificação por SMS</h2>
+        <p class="text-muted">Confirmação instantânea via mensagem de texto</p>
+      </div>
+
+      <!-- Phone Mockup -->
+      <div class="phone-mockup">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <!-- Status Bar -->
+            <div class="phone-status-bar">
+              <span class="phone-time">15:31</span>
+              <div class="phone-icons">
+                <span>📶</span>
+                <span>📡</span>
+                <span>🔋</span>
+              </div>
+            </div>
+
+            <!-- SMS App Header -->
+            <div class="sms-app-header">
+              <span class="sms-back-btn">‹</span>
+              <div>
+                <div class="sms-contact-name">Bertrand</div>
+                <div class="sms-contact-number">+351 910 000 000</div>
+              </div>
+            </div>
+
+            <!-- SMS Messages -->
+            <div class="sms-messages">
+              <!-- Received Message 1 -->
+              <div class="sms-message received">
+                    <div>📚 <span class="sms-bold">Bertrand</span></div>
+                    <div style="margin-top: 4px;">A sua encomenda foi confirmada!</div>
+                    <div style="margin-top: 4px;">Encomenda: <span class="sms-bold">BL-2026-001847</span></div>
+                    <div style="margin-top: 4px;">Total: €16.19</div>
+                    <div id="smsDeliveryInfo" style="margin-top: 4px;">Levantamento: Bertrand Chiado</div>
+                    <div class="sms-time">15:31</div>
+              </div>
+
+              <!-- Received Message 2 -->
+              <div class="sms-message received">
+                <div id="smsPreviewInfo">Previsão: Disponível em 24-48h.</div>
+                <div style="margin-top: 4px;">Receberá SMS quando estiver pronta.</div>
+                <div style="margin-top: 4px;">Acompanhe: bertrand.pt/acompanhar</div>
+                <div class="sms-time">15:31</div>
+              </div>
+
+              <!-- Sent Message -->
+              <div class="sms-message sent">
+                <div>Obrigado! 👍</div>
+                <div class="sms-time">15:32</div>
+              </div>
+            </div>
+
+            <!-- SMS Input Area -->
+            <div class="sms-input-area">
+              <span class="sms-emoji">😊</span>
+              <input type="text" class="sms-input" placeholder="iMessage">
+              <button class="sms-send-btn">↑</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explanation Box -->
+      <div style="max-width: 600px; margin: 32px auto;">
+        <div class="info-card">
+          <h4>📱 Análise do Canal SMS</h4>
+          <p style="font-size: 14px; margin-bottom: 12px;"><strong>Propósito do Canal:</strong></p>
+          <ul>
+            <li>Confirmação imediata - alta taxa de abertura (~98%)</li>
+            <li>Número da encomenda para referência rápida</li>
+            <li>Informação essencial em formato conciso</li>
+            <li>Link direto para acompanhamento online</li>
+            <li>Notificação de mudanças de estado em tempo real</li>
+          </ul>
+          <p style="font-size: 13px; margin-top: 12px; color: var(--color-blue);">
+            <strong>Vantagem:</strong> O SMS é universal - funciona em qualquer telemóvel sem necessidade de apps ou internet no momento da receção.
+          </p>
+        </div>
+
+        <div class="card mt-4" style="background: #fff3e0; border-left: 4px solid var(--color-orange);">
+          <h4>📊 Estatísticas de SMS Marketing</h4>
+          <ul style="font-size: 13px; padding-left: 20px; margin: 8px 0 0 0;">
+            <li>Taxa de abertura: 98% (vs 20% email)</li>
+            <li>Tempo médio de leitura: 3 minutos</li>
+            <li>Taxa de cliques: 19% (para links)</li>
+            <li>ROI: €42 por cada €1 investido</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps -->
+  <section class="section" style="background: var(--color-light);">
+    <div class="container text-center">
+      <h2 class="section-title">Continuar a Apresentação</h2>
+      <p class="section-subtitle">Veja o que acontece quando a encomenda está pronta</p>
+      <div class="flex gap-2" style="justify-content: center; margin-top: 24px;">
+        <a href="email-pronta.html" class="btn btn-accent">Ver Email "Pronta" 📧</a>
+        <a href="sms-pronta.html" class="btn btn-accent">Ver SMS "Pronta" 📱</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom" style="text-align: center;">
+      <p class="text-muted" style="font-size: 12px;">© 2026 Grupo Bertrand Círculo</p>
+    </div>
+  </footer>
+
+  <!-- Presentation Mode Nav -->
+  <div class="pres-nav-toggle" onclick="togglePresNav()" title="Modo Apresentação">🎯</div>
+  <div class="pres-nav-menu" id="presNavMenu">
+    <div class="pres-nav-menu-title">Modo Apresentação</div>
+    <div class="pres-nav-menu-links">
+      <a href="index.html">1. Home</a>
+      <a href="produto.html">2. Produto</a>
+      <a href="carrinho.html">3. Carrinho</a>
+      <a href="confirmacao.html">4. Confirmação</a>
+      <a href="email-confirmacao.html">5. Email ✉</a>
+      <a href="sms-confirmacao.html">6. SMS 📱</a>
+      <a href="acompanhar.html">7. Acompanhar</a>
+      <a href="email-pronta.html">8. Email Pronto ✉</a>
+      <a href="sms-pronta.html">9. SMS Pronto 📱</a>
+      <a href="apoio.html">10. Apoio</a>
+      <a href="ajuda.html">11. Ajuda</a>
+      <a href="conta.html">12. Conta</a>
+      <a href="backoffice.html">13. Backoffice</a>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    function togglePresNav() {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+  <script>
+    // Handle delivery method display
+    const deliveryMethod = sessionStorage.getItem('orderDelivery');
+    const orderStore = sessionStorage.getItem('orderStore');
+    const smsDeliveryInfo = document.getElementById('smsDeliveryInfo');
+    const smsPreviewInfo = document.getElementById('smsPreviewInfo');
+
+    if (deliveryMethod === 'home') {
+      if (smsDeliveryInfo) smsDeliveryInfo.textContent = 'Entrega: Entrega ao Domicílio (2-3 dias úteis)';
+      if (smsPreviewInfo) smsPreviewInfo.textContent = 'Previsão: Entregue em 2-3 dias úteis.';
+    } else if (deliveryMethod === 'store' && orderStore) {
+      if (smsDeliveryInfo) smsDeliveryInfo.textContent = 'Levantamento: ' + orderStore.split(' - ')[0];
+    }
+  </script>
+</body>
+</html>

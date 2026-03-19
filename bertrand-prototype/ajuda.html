@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajuda (FAQ) - Livraria Bertrand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="https://www.bertrand.pt/images/logo-bertrand.svg" alt="Bertrand" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-text" style="display:none;">Bertrand<span class="logo-dot">.</span></span>
+      </a>
+      <div class="search-bar">
+        <input type="search" placeholder="Pesquisar livros, autores...">
+        <button type="button">🔍</button>
+      </div>
+      <div class="header-actions">
+        <a href="conta.html" class="header-btn">👤 Conta</a>
+        <a href="#" class="header-btn">❤️ Lista de desejos</a>
+        <a href="carrinho.html" class="header-btn">
+          🛒 <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+    <nav class="nav-main">
+      <ul class="nav-list">
+        <li><a href="index.html">Novidades</a></li>
+        <li><a href="index.html">Literatura</a></li>
+        <li><a href="index.html">Infantis e Juvenis</a></li>
+        <li><a href="index.html">Livros em Inglês</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Title -->
+  <div class="section" style="background: var(--color-light); padding: 24px 0;">
+    <div class="container">
+      <h1>Ajuda e Perguntas Frequentes</h1>
+      <p class="text-muted">Encontre respostas para as dúvidas mais comuns</p>
+    </div>
+  </div>
+
+  <!-- Search FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="container-narrow">
+        <div class="card mb-4">
+          <div class="form-group">
+            <input type="search" class="form-input" placeholder="🔍 Pesquisar na ajuda..." style="font-size: 16px; padding: 16px;">
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="flex gap-2 mb-4" style="flex-wrap: wrap;">
+          <a href="#encomendas" class="badge" style="background: var(--color-light); padding: 8px 16px; border-radius: 20px; text-decoration: none;">📦 Encomendas</a>
+          <a href="#entregas" class="badge" style="background: var(--color-light); padding: 8px 16px; border-radius: 20px; text-decoration: none;">🚚 Entregas</a>
+          <a href="#pagamentos" class="badge" style="background: var(--color-light); padding: 8px 16px; border-radius: 20px; text-decoration: none;">💳 Pagamentos</a>
+          <a href="#devolucoes" class="badge" style="background: var(--color-light); padding: 8px 16px; border-radius: 20px; text-decoration: none;">🔄 Devoluções</a>
+          <a href="#conta" class="badge" style="background: var(--color-light); padding: 8px 16px; border-radius: 20px; text-decoration: none;">👤 Conta</a>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="accordion">
+
+          <!-- Category: Encomendas -->
+          <h3 id="encomendas" class="section-title" style="font-size: 18px; margin-bottom: 16px;">📦 Encomendas</h3>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Como faço uma encomenda?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Fazer uma encomenda é muito simples:</p>
+              <ol style="padding-left: 20px;">
+                <li>Procure o livro desejado usando a barra de pesquisa ou navegue pelas categorias</li>
+                <li>Clique no livro para ver detalhes e selecione a quantidade</li>
+                <li>Clique em "Adicionar ao Cesto"</li>
+                <li>No cesto, escolha o método de entrega (domicílio ou levantamento em livraria)</li>
+                <li>Preencha os dados de contacto e finalize a encomenda</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Posso alterar ou cancelar a minha encomenda?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Sim, pode alterar ou cancelar a encomenda enquanto esta se encontrar no estado "Em preparação". Para isso, aceda à sua <a href="conta.html">Área de Cliente</a> ou contacte-nos através do <a href="apoio.html">Fale com o seu Livreiro</a>.</p>
+              <p class="text-muted mt-2" style="font-size: 13px;">Assim que a encomenda entre em transporte ou fique pronta para levantamento, não será possível fazer alterações.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Como funcionam as reservas de livros?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Pode reservar livros online e levantá-los na livraria da sua preferência. O serviço de levantamento em livraria é <strong>completamente gratuito</strong>.</p>
+              <p class="mt-2">Os livros ficam reservados durante <strong>15 dias</strong> após a notificação de disponibilidade.</p>
+            </div>
+          </div>
+
+          <!-- Category: Entregas -->
+          <h3 id="entregas" class="section-title" style="font-size: 18px; margin: 32px 0 16px 0;">🚚 Entregas e Levantamento</h3>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Qual o prazo de entrega para domicílio?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Os prazos de entrega são:</p>
+              <ul style="padding-left: 20px;">
+                <li><strong>Continente Portugal:</strong> 2-3 dias úteis</li>
+                <li><strong>Madeira e Açores:</strong> 5-7 dias úteis</li>
+                <li><strong>Internacional:</strong> 10-15 dias úteis</li>
+              </ul>
+              <p class="text-muted mt-2" style="font-size: 13px;">Os prazos são contados a partir da confirmação do pagamento.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Como funciona o levantamento em livraria?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>O levantamento em livraria é <strong>gratuito</strong> e muito simples:</p>
+              <ol style="padding-left: 20px;">
+                <li>Na finalização da encomenda, selecione "Levantamento em Livraria"</li>
+                <li>Escolha a livraria da sua preferência</li>
+                <li>Receberá um email e SMS quando a encomenda estiver pronta ( habitualmente em 2-24 horas)</li>
+                <li>Dirija-se à livraria, apresente o número da encomenda e levante os seus livros</li>
+              </ol>
+              <p class="mt-2">Disponível em mais de 50 livrarias em todo o país.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Quanto custam os portes de envio?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Os portes de envio são:</p>
+              <ul style="padding-left: 20px;">
+                <li><strong>Grátis</strong> para encomendas acima de €20</li>
+                <li>€3.50 para encomendas até €20 (Portugal Continental)</li>
+                <li>€5.90 para Madeira e Açores</li>
+              </ul>
+              <p class="text-success mt-2" style="font-size: 14px;">🎁 O levantamento em livraria é SEMPRE gratuito!</p>
+            </div>
+          </div>
+
+          <!-- Category: Pagamentos -->
+          <h3 id="pagamentos" class="section-title" style="font-size: 18px; margin: 32px 0 16px 0;">💳 Pagamentos</h3>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Que formas de pagamento aceitam?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Aceitamos as seguintes formas de pagamento:</p>
+              <ul style="padding-left: 20px;">
+                <li>Cartão de crédito/débito (Visa, Mastercard, American Express)</li>
+                <li>MB WAY</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>O pagamento é seguro?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Sim! Todos os pagamentos são processados através de plataformas certificadas PCI DSS, garantindo a segurança dos seus dados.</p>
+              <p class="mt-2">Utilizamos encriptação SSL de 256-bit e não armazenamos os dados do seu cartão.</p>
+            </div>
+          </div>
+
+          <!-- Category: Devoluções -->
+          <h3 id="devolucoes" class="section-title" style="font-size: 18px; margin: 32px 0 16px 0;">🔄 Devoluções e Trocas</h3>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Posso devolver um livro?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Sim! Pode devolver livros em até <strong>14 dias</strong> após o recebimento, desde que:</p>
+              <ul style="padding-left: 20px;">
+                <li>O livro se encontre em perfeitas condições</li>
+                <li>Tenha o lacre original (se aplicável)</li>
+                <li>Apresente o comprovativo de compra</li>
+              </ul>
+              <p class="mt-2">Para devoluções, contacte-nos através do <a href="apoio.html">Fale com o seu Livreiro</a>.</p>
+            </div>
+          </div>
+
+          <!-- Category: Conta -->
+          <h3 id="conta" class="section-title" style="font-size: 18px; margin: 32px 0 16px 0;">👤 Conta e Clube</h3>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>O que é o Clube de Leitores Bertrand?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>O <strong>Clube de Leitores Bertrand</strong> é o nosso programa de fidelização que oferece:</p>
+              <ul style="padding-left: 20px;">
+                <li>1 ponto por cada €1 gasto</li>
+                <li>Bónus de aniversário</li>
+                <li>Ofertas exclusivas</li>
+                <li>Acesso antecipado a promoções</li>
+              </ul>
+              <p class="mt-2">A cada 500 pontos, recebe um voucher de €5 para usar em livros!</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Como acompanho a minha encomenda?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Pode acompanhar a sua encomenda de três formas:</p>
+              <ul style="padding-left: 20px;">
+                <li>Através da sua <a href="conta.html">Área de Cliente</a></li>
+                <li>Na página de <a href="acompanhar.html">Acompanhar Encomenda</a> com o número da encomenda</li>
+                <li>Através dos links nos emails de confirmação</li>
+              </ul>
+              <p class="mt-2">Receberá notificações por email e SMS sempre que o estado da encomenda for atualizado.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Still Need Help -->
+        <div class="card mt-4" style="background: linear-gradient(135deg, #337AB7 0%, #1a5d8f 100%); color: white;">
+          <div style="text-align: center; padding: 24px;">
+            <div style="font-size: 40px; margin-bottom: 16px;">🤔</div>
+            <h3 style="color: white; margin-bottom: 8px;">Ainda precisa de ajuda?</h3>
+            <p style="opacity: 0.9; margin-bottom: 20px;">A nossa equipa está disponível para o ajudar</p>
+            <a href="apoio.html" class="btn" style="background: white; color: #337AB7; border: none; padding: 12px 24px;">Fale com o seu Livreiro</a>
+          </div>
+        </div>
+
+        <!-- Contact Channels Quick Links -->
+        <div class="grid-4 mt-4 text-center">
+          <a href="apoio.html" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+            <span style="font-size: 24px;">💬</span>
+            <span style="font-size: 12px;">WhatsApp</span>
+          </a>
+          <a href="apoio.html" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+            <span style="font-size: 24px;">🗨️</span>
+            <span style="font-size: 12px;">Chat Online</span>
+          </a>
+          <a href="apoio.html" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+            <span style="font-size: 24px;">📞</span>
+            <span style="font-size: 12px;">Telefone</span>
+          </a>
+          <a href="apoio.html" class="btn btn-ghost" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px;">
+            <span style="font-size: 24px;">📧</span>
+            <span style="font-size: 12px;">Email</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul class="footer-links">
+          <li><a href="apoio.html">Fale com o seu Livreiro</a></li>
+          <li><a href="ajuda.html">Ajuda (FAQ)</a></li>
+          <li><a href="acompanhar.html">Acompanhar Encomenda</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>A Conta</h4>
+        <ul class="footer-links">
+          <li><a href="conta.html">Área de Cliente</a></li>
+          <li><a href="#">Clube de Leitores</a></li>
+          <li><a href="#">Lista de Desejos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="text-muted" style="font-size: 12px;">© 2026 Grupo Bertrand Círculo</p>
+    </div>
+  </footer>
+
+  <!-- Presentation Mode Nav -->
+  <div class="pres-nav-toggle" onclick="togglePresNav()" title="Modo Apresentação">🎯</div>
+  <div class="pres-nav-menu" id="presNavMenu">
+    <div class="pres-nav-menu-title">Modo Apresentação</div>
+    <div class="pres-nav-menu-links">
+      <a href="index.html">1. Home</a>
+      <a href="produto.html">2. Produto</a>
+      <a href="carrinho.html">3. Carrinho</a>
+      <a href="confirmacao.html">4. Confirmação</a>
+      <a href="email-confirmacao.html">5. Email ✉</a>
+      <a href="sms-confirmacao.html">6. SMS 📱</a>
+      <a href="acompanhar.html">7. Acompanhar</a>
+      <a href="email-pronta.html">8. Email Pronto ✉</a>
+      <a href="sms-pronta.html">9. SMS Pronto 📱</a>
+      <a href="apoio.html">10. Apoio</a>
+      <a href="ajuda.html">11. Ajuda</a>
+      <a href="conta.html">12. Conta</a>
+      <a href="backoffice.html">13. Backoffice</a>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    function togglePresNav() {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

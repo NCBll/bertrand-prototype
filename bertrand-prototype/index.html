@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livraria Bertrand | Livros, eBooks, Audiobooks e Cultura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="https://www.bertrand.pt/images/logo-bertrand.svg" alt="Bertrand" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-text" style="display:none;">Bertrand<span class="logo-dot">.</span></span>
+      </a>
+      <div class="search-bar">
+        <input type="search" placeholder="Pesquisar livros, autores...">
+        <button type="button">🔍</button>
+      </div>
+      <div class="header-actions">
+        <a href="conta.html" class="header-btn">
+          <span>👤</span>
+          <span class="hide-mobile">Conta</span>
+        </a>
+        <a href="#" class="header-btn">
+          <span>❤️</span>
+          <span class="hide-mobile">Lista de desejos</span>
+        </a>
+        <a href="carrinho.html" class="header-btn">
+          <span>🛒</span>
+          <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+    <nav class="nav-main">
+      <ul class="nav-list">
+        <li><a href="index.html">Novidades</a></li>
+        <li><a href="index.html">Literatura</a></li>
+        <li><a href="index.html">Infantis e Juvenis</a></li>
+        <li><a href="index.html">Livros em Inglês</a></li>
+        <li><a href="index.html">Ofertas</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="apoio.html">Apoio ao Cliente</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 0; color: white;">
+    <div class="container">
+      <div class="grid-2" style="align-items: center;">
+        <div>
+          <span class="badge" style="background: rgba(255,255,255,0.2); color: white; margin-bottom: 12px; display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">GRÁTIS</span>
+          <h1 class="mb-2" style="color: white;">Levantamento em Livraria</h1>
+          <p class="section-subtitle" style="color: rgba(255,255,255,0.9); font-size: 18px; margin-bottom: 24px;">Compre online e levante gratuitamente numa das nossas +50 livrarias em Portugal.</p>
+          <div class="mt-4" style="display: flex; gap: 16px;">
+            <a href="#destaques" class="btn" style="background: white; color: #667eea; border: none; padding: 12px 28px; font-weight: 600;">Ver Livros</a>
+            <a href="ajuda.html" class="btn" style="background: transparent; border-color: white; color: white;">Saiba Mais</a>
+          </div>
+        </div>
+        <div class="text-center">
+          <div style="background: rgba(255,255,255,0.1); border-radius: 16px; padding: 40px; display: inline-block; backdrop-filter: blur(10px);">
+            <img src="https://img.bertrand.pt/images/maria-lua-n-1-harriet-muncaster/NDV8MTk4NDM0OTl8MTU2ODE1Njd8MTc2MjI0NjM2ODAwMHx3ZWJw/200x&ctx=0" alt="Livros Bertrand" style="border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); max-width: 180px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Books -->
+  <section id="destaques" class="section">
+    <div class="container">
+      <h2 class="section-title">Destaques da Semana</h2>
+      <div class="grid-4">
+        <!-- Book 1 -->
+        <div class="product-card">
+          <a href="produto.html">
+            <img src="https://img.bertrand.pt/images/educar-sem-pressa-filipa-malo-franco/NDV8MjU1MzQ5ODZ8MjE3ODQ5NjB8MTY0OTA1ODEyNjAwMHx3ZWJw/175x&ctx=0" class="product-cover" alt="Educar sem Pressa - Filipa Malo Franco" onerror="this.src='https://img.bertrand.pt/images/educar-sem-pressa-filipa-malo-franco/NDV8MjU1MzQ5ODZ8MjE3ODQ5NjB8MTY0OTA1ODEyNjAwMHx3ZWJw/270x&ctx=0'">
+          </a>
+          <div class="product-body">
+            <h3 class="product-title">Educar sem Pressa</h3>
+            <p class="product-author">Filipa Malo Franco</p>
+            <div class="product-price">
+              <span class="price-current">€16.19</span>
+              <span class="price-original">€17.99</span>
+              <span class="discount-badge">-10%</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-primary" style="flex: 1;" onclick="addToCart('Educar sem Pressa', 'Filipa Malo Franco', 16.19, 'https://img.bertrand.pt/images/educar-sem-pressa-filipa-malo-franco/NDV8MjU1MzQ5ODZ8MjE3ODQ5NjB8MTY0OTA1ODEyNjAwMHx3ZWJw/100x&ctx=0', event)">Adicionar ao Cesto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="product-card">
+          <img src="https://img.bertrand.pt/images/a-mulher-do-pe-mia-couto/NDV8MTg2ODczMzB8MTQ0MDc0NTh8MTQ4NTM1NDgwNzAwMHx3ZWJw/175x&ctx=0" class="product-cover" alt="A Mulher do Pé - Mia Couto">
+          <div class="product-body">
+            <h3 class="product-title">A Mulher do Pé</h3>
+            <p class="product-author">Mia Couto</p>
+            <div class="product-price">
+              <span class="price-current">€18.90</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-primary" style="flex: 1;" onclick="addToCart('A Mulher do Pé', 'Mia Couto', 18.90, 'https://img.bertrand.pt/images/a-mulher-do-pe-mia-couto/NDV8MTg2ODczMzB8MTQ0MDc0NTh8MTQ4NTM1NDgwNzAwMHx3ZWJw/100x&ctx=0', event)">Adicionar ao Cesto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="product-card">
+          <img src="https://img.bertrand.pt/images/o-hospital-de-alfaces-pedro-chagas-freitas/NDV8MTg4ODM2OTJ8MTQ2MTA2Nzd8MTQ4MzEwMDE2NTAwMHx3ZWJw/175x&ctx=0" class="product-cover" alt="O Hospital de Alfaces - Pedro Chagas Freitas">
+          <div class="product-body">
+            <h3 class="product-title">O Hospital de Alfaces</h3>
+            <p class="product-author">Pedro Chagas Freitas</p>
+            <div class="product-price">
+              <span class="price-current">€17.50</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-primary" style="flex: 1;" onclick="addToCart('O Hospital de Alfaces', 'Pedro Chagas Freitas', 17.50, 'https://img.bertrand.pt/images/o-hospital-de-alfaces-pedro-chagas-freitas/NDV8MTg4ODM2OTJ8MTQ2MTA2Nzd8MTQ4MzEwMDE2NTAwMHx3ZWJw/100x&ctx=0', event)">Adicionar ao Cesto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 4 -->
+        <a href="#" class="product-card">
+          <img src="https://img.bertrand.pt/images/maddaddam-margaret-atwood/NDV8MjQ1OTAyMTd8MjA3MDk3NTB8MTYzOTY2ODg0MTAwMHx3ZWJw/175x&ctx=0" class="product-cover" alt="MaddAddam - Margaret Atwood">
+          <div class="product-body">
+            <h3 class="product-title">Um Roteiro para Boas Leituras</h3>
+            <p class="product-author">Vários Autores</p>
+            <div class="product-price">
+              <span class="badge badge-success mb-2">Portes Grátis</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-accent" style="flex: 1;">Descarregar</button>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section" style="background: var(--color-light);">
+    <div class="container">
+      <h2 class="section-title">Explorar por Categoria</h2>
+      <div class="grid-4">
+        <a href="#" class="card text-center" style="display: block; padding: 24px; background: var(--color-white);">
+          <div style="font-size: 32px; margin-bottom: 8px;">📚</div>
+          <h4 class="mb-2">Literatura</h4>
+        </a>
+        <a href="#" class="card text-center" style="display: block; padding: 24px; background: var(--color-white);">
+          <div style="font-size: 32px; margin-bottom: 8px;">👶</div>
+          <h4 class="mb-2">Infantis</h4>
+        </a>
+        <a href="#" class="card text-center" style="display: block; padding: 24px; background: var(--color-white);">
+          <div style="font-size: 32px; margin-bottom: 8px;">🌍</div>
+          <h4 class="mb-2">Em Inglês</h4>
+        </a>
+        <a href="#" class="card text-center" style="display: block; padding: 24px; background: var(--color-white);">
+          <div style="font-size: 32px; margin-bottom: 8px;">🎧</div>
+          <h4 class="mb-2">Audiobooks</h4>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Service Teaser -->
+  <section class="section">
+    <div class="container">
+      <div class="card" style="background: linear-gradient(135deg, #337AB7 0%, #1a5d8f 100%); color: white;">
+        <div class="grid-2" style="align-items: center;">
+          <div>
+            <h2 style="color: white;">Precisa de Ajuda?</h2>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 16px;">
+              A nossa equipa está disponível para ajudar através de diversos canais.
+            </p>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <a href="apoio.html" class="btn" style="background: white; color: #337AB7; border: none;">Fale Connosco</a>
+              <a href="ajuda.html" class="btn" style="background: transparent; border-color: white; color: white;">FAQ</a>
+            </div>
+          </div>
+          <div class="text-center">
+            <div style="font-size: 48px; margin-bottom: 16px;">💬</div>
+            <p style="font-size: 14px; opacity: 0.9;">Tempo médio de resposta: 24h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section" style="background: var(--color-light);">
+    <div class="container-narrow text-center">
+      <h2 class="section-title">Receba Novidades</h2>
+      <p class="section-subtitle">Subscreva a nossa newsletter e receba recomendações personalizadas.</p>
+      <form style="display: flex; gap: 8px; max-width: 400px; margin: 0 auto;">
+        <input type="email" placeholder="O seu email" class="form-input" style="flex: 1;">
+        <button type="submit" class="btn btn-accent">Inscrever</button>
+      </form>
+      <p class="mt-2 text-muted" style="font-size: 12px;">
+        Ao subscrever, concorda com a nossa Política de Privacidade.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>As Nossas Livrarias</h4>
+        <ul class="footer-links">
+          <li><a href="#">Rede de Livrarias</a></li>
+          <li><a href="#">A Nossa História</a></li>
+          <li><a href="#">Café Bertrand</a></li>
+          <li><a href="#">Reserva/Ver Stock</a></li>
+          <li><a href="#">Levantamento na Livraria</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Compra Online</h4>
+        <ul class="footer-links">
+          <li><a href="#">Condições de Venda</a></li>
+          <li><a href="#">Compras 100% Seguras</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Trocas e Devoluções</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Mais Bertrand</h4>
+        <ul class="footer-links">
+          <li><a href="#">Programa Leitor Bertrand</a></li>
+          <li><a href="#">Agenda Cultural</a></li>
+          <li><a href="#">Clube Bertrand Infantil</a></li>
+          <li><a href="#">Blogue Somos Livros</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul class="footer-links">
+          <li><a href="apoio.html">Fale com o seu Livreiro</a></li>
+          <li><a href="ajuda.html">Ajuda (FAQ)</a></li>
+          <li><a href="conta.html">Área de Cliente</a></li>
+          <li><a href="#">Receber Novidades</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-social">
+        <a href="#" title="Facebook">📘</a>
+        <a href="#" title="Instagram">📷</a>
+        <a href="#" title="TikTok">🎵</a>
+        <a href="#" title="LinkedIn">💼</a>
+        <a href="#" title="YouTube">📺</a>
+      </div>
+      <p class="text-muted" style="font-size: 12px;">© 2026 Grupo Bertrand Círculo. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Presentation Mode Nav -->
+  <div class="pres-nav-toggle" onclick="togglePresNav()" title="Modo Apresentação">🎯</div>
+  <div class="pres-nav-menu" id="presNavMenu">
+    <div class="pres-nav-menu-title">Modo Apresentação</div>
+    <div class="pres-nav-menu-links">
+      <a href="index.html">1. Home</a>
+      <a href="produto.html">2. Produto</a>
+      <a href="carrinho.html">3. Carrinho</a>
+      <a href="confirmacao.html">4. Confirmação</a>
+      <a href="email-confirmacao.html">5. Email ✉</a>
+      <a href="sms-confirmacao.html">6. SMS 📱</a>
+      <a href="acompanhar.html">7. Acompanhar</a>
+      <a href="email-pronta.html">8. Email Pronto ✉</a>
+      <a href="sms-pronta.html">9. SMS Pronto 📱</a>
+      <a href="apoio.html">10. Apoio</a>
+      <a href="ajuda.html">11. Ajuda</a>
+      <a href="conta.html">12. Conta</a>
+      <a href="backoffice.html">13. Backoffice</a>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Cart functionality for homepage
+    function addToCart(title, author, price, coverImage, event) {
+      if (event) event.preventDefault();
+
+      // Get existing cart from sessionStorage
+      let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+      // Check if item already exists - find by title (unique identifier)
+      const existingIndex = cart.findIndex(item => item.title === title);
+      if (existingIndex >= 0) {
+        // Increment quantity if book already in cart
+        cart[existingIndex].quantity += 1;
+      } else {
+        // Add new book to cart with cover image
+        cart.push({ title, author, price, quantity: 1, coverImage: coverImage || null });
+      }
+
+      // Save to sessionStorage
+      sessionStorage.setItem('cart', JSON.stringify(cart));
+
+      // Update all cart badges on the page
+      const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.querySelectorAll('.cart-badge').forEach(badge => {
+        badge.textContent = total;
+      });
+
+      showNotification(existingIndex >= 0 ? 'Quantidade atualizada!' : 'Livro adicionado ao cesto!');
+    }
+
+    // Clear cart function (call this when order is completed)
+    function clearCart() {
+      sessionStorage.removeItem('cart');
+      sessionStorage.removeItem('orderDelivery');
+      sessionStorage.removeItem('orderStore');
+      sessionStorage.removeItem('orderName');
+      sessionStorage.removeItem('orderEmail');
+      sessionStorage.removeItem('orderPhone');
+
+      // Reset cart badges
+      document.querySelectorAll('.cart-badge').forEach(badge => {
+        badge.textContent = '0';
+      });
+    }
+
+    // Initialize cart badge on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+      const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.querySelectorAll('.cart-badge').forEach(badge => {
+        badge.textContent = total;
+      });
+    });
+  </script>
+  <script>
+    // Collapsible presentation navigation
+    function togglePresNav() {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

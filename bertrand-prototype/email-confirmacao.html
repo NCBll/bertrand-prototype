@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email de Confirmação - Livraria Bertrand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <style>
+    /* Email Mockup Styles */
+    .email-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .email-header {
+      background: #f5f5f5;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .email-header-back {
+      color: #5f6368;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .email-header-title {
+      flex: 1;
+      font-size: 14px;
+      color: #5f6368;
+    }
+
+    .email-meta {
+      padding: 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .email-subject {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #202124;
+    }
+
+    .email-from {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .email-avatar {
+      width: 40px;
+      height: 40px;
+      background: var(--color-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .email-from-info {
+      flex: 1;
+    }
+
+    .email-from-name {
+      font-weight: 600;
+      color: #202124;
+    }
+
+    .email-from-email {
+      font-size: 12px;
+      color: #5f6368;
+    }
+
+    .email-to {
+      font-size: 12px;
+      color: #5f6368;
+    }
+
+    .email-body {
+      padding: 24px;
+    }
+
+    .email-greeting {
+      margin-bottom: 16px;
+    }
+
+    .email-content {
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .email-content p {
+      margin-bottom: 16px;
+    }
+
+    .order-details-box {
+      background: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+
+    .order-details-box h4 {
+      margin: 0 0 16px 0;
+      color: #202124;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .order-detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .order-detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .order-detail-label {
+      color: #5f6368;
+      font-size: 14px;
+    }
+
+    .order-detail-value {
+      font-weight: 500;
+      color: #202124;
+      font-size: 14px;
+    }
+
+    .order-detail-value.highlight {
+      color: var(--color-orange);
+      font-weight: 600;
+    }
+
+    .pickup-info {
+      background: #e8f5e9;
+      border-left: 4px solid var(--color-green);
+      padding: 16px;
+      border-radius: 4px;
+      margin: 20px 0;
+    }
+
+    .pickup-info h5 {
+      color: var(--color-green);
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+
+    .pickup-info p {
+      margin: 0;
+      font-size: 14px;
+      color: #2e7d32;
+    }
+
+    .email-button {
+      display: inline-block;
+      background: var(--color-orange);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 16px 0;
+    }
+
+    .email-footer {
+      padding: 20px 24px;
+      border-top: 1px solid #f0f0f0;
+      background: #f8f9fa;
+    }
+
+    .email-footer-text {
+      font-size: 12px;
+      color: #5f6368;
+      line-height: 1.6;
+    }
+
+    .email-footer-links {
+      margin-top: 12px;
+    }
+
+    .email-footer-links a {
+      color: var(--color-blue);
+      text-decoration: none;
+      margin-right: 16px;
+      font-size: 12px;
+    }
+
+    .timeline-email {
+      margin: 24px 0;
+    }
+
+    .timeline-step-email {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .timeline-step-email.completed .timeline-icon {
+      background: var(--color-green);
+      color: white;
+    }
+
+    .timeline-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .timeline-content-email h5 {
+      margin: 0 0 4px 0;
+      font-size: 14px;
+      color: #202124;
+    }
+
+    .timeline-content-email p {
+      margin: 0;
+      font-size: 12px;
+      color: #5f6368;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="https://www.bertrand.pt/images/logo-bertrand.svg" alt="Bertrand" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-text" style="display:none;">Bertrand<span class="logo-dot">.</span></span>
+      </a>
+      <div class="search-bar">
+        <input type="search" placeholder="Pesquisar livros, autores...">
+        <button type="button">🔍</button>
+      </div>
+      <div class="header-actions">
+        <a href="conta.html" class="header-btn">👤 Conta</a>
+        <a href="#" class="header-btn">❤️ Lista de desejos</a>
+        <a href="carrinho.html" class="header-btn">
+          🛒 <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <div class="section" style="background: var(--color-light); padding: 24px 0;">
+    <div class="container">
+      <div class="flex items-center gap-2">
+        <a href="confirmacao.html" style="color: var(--color-blue);">← Voltar à Confirmação</a>
+        <span style="color: #999;">|</span>
+        <h1 style="font-size: 20px; margin: 0;">Simulação: Email de Confirmação</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email Mockup -->
+  <section class="section">
+    <div class="container">
+      <div class="email-container">
+        <!-- Email Header -->
+        <div class="email-header">
+          <span class="email-header-back">←</span>
+          <span class="email-header-title">Bertrand - Confirmação de Encomenda</span>
+        </div>
+
+        <!-- Email Meta -->
+        <div class="email-meta">
+          <div class="email-subject">✓ Encomenda Confirmada - BL-2026-001847</div>
+          <div class="email-from">
+            <div class="email-avatar">B</div>
+            <div class="email-from-info">
+              <div class="email-from-name">Livraria Bertrand</div>
+              <div class="email-from-email">nao-responda@bertrand.pt</div>
+            </div>
+            <div class="email-to">
+              para: joao.silva@email.pt
+            </div>
+          </div>
+        </div>
+
+        <!-- Email Body -->
+        <div class="email-body">
+          <div class="email-greeting">
+            Olá João Silva,
+          </div>
+
+          <div class="email-content">
+            <p>Obrigado pela sua encomenda na Livraria Bertrand!</p>
+            <p>Confirmamos que recebemos o seu pedido e o mesmo está a ser processado. Receberá uma notificação quando a sua encomenda estiver pronta para levantamento.</p>
+          </div>
+
+          <!-- Order Details -->
+          <div class="order-details-box">
+            <h4>Detalhes da Encomenda</h4>
+            <div class="order-detail-row">
+              <span class="order-detail-label">Número da Encomenda:</span>
+              <span class="order-detail-value highlight">BL-2026-001847</span>
+            </div>
+            <div class="order-detail-row">
+              <span class="order-detail-label">Data:</span>
+              <span class="order-detail-value">23 de Fevereiro de 2026</span>
+            </div>
+            <div class="order-detail-row" id="deliveryMethodRow">
+              <span class="order-detail-label">Método de Entrega:</span>
+              <span class="order-detail-value" id="deliveryMethodValue">📚 Levantamento em Livraria</span>
+            </div>
+            <div class="order-detail-row" id="pickupLocationRow">
+              <span class="order-detail-label">Local de Levantamento:</span>
+              <span class="order-detail-value" id="pickupLocationValue">Livraria Bertrand Chiado - Lisboa</span>
+            </div>
+            <div class="order-detail-row">
+              <span class="order-detail-label">Itens:</span>
+              <span class="order-detail-value">Educar sem Pressa (x1)</span>
+            </div>
+            <div class="order-detail-row">
+              <span class="order-detail-label">Total:</span>
+              <span class="order-detail-value highlight">€16.19</span>
+            </div>
+          </div>
+
+          <!-- Pickup Info -->
+          <div class="pickup-info" id="pickupInfoSection">
+            <h5 id="pickupInfoTitle">📚 Informação sobre o Levantamento</h5>
+            <div id="pickupInfoContent">
+              <p><strong>Local:</strong> Livraria Bertrand Chiado<br>
+              Rua Garrett, 73-75, 1200-205 Lisboa</p>
+              <p style="margin-top: 8px;"><strong>Previsão:</strong> Disponível em 24-48 horas</p>
+              <p style="margin-top: 8px;"><strong>Horário:</strong> Seg-Sáb: 10h00-20h00 | Dom: 14h00-19h30</p>
+              <p style="margin-top: 8px;">Apresente este email ou o número da encomenda no balcão para levantar os seus livros.</p>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="timeline-email">
+            <h4 style="margin: 0 0 16px 0; font-size: 14px; text-transform: uppercase; color: #5f6368;">Acompanhamento</h4>
+            <div class="timeline-step-email completed">
+              <div class="timeline-icon">✓</div>
+              <div class="timeline-content-email">
+                <h5>Encomenda registada</h5>
+                <p>23/02/2026 15:30</p>
+              </div>
+            </div>
+            <div class="timeline-step-email completed">
+              <div class="timeline-icon">✓</div>
+              <div class="timeline-content-email">
+                <h5>Pagamento confirmado</h5>
+                <p>23/02/2026 15:31</p>
+              </div>
+            </div>
+            <div class="timeline-step-email">
+              <div class="timeline-icon">⏳</div>
+              <div class="timeline-content-email">
+                <h5>Em preparação</h5>
+                <p>Aguardando...</p>
+              </div>
+            </div>
+            <div class="timeline-step-email">
+              <div class="timeline-icon">📚</div>
+              <div class="timeline-content-email">
+                <h5>Pronta para levantamento</h5>
+                <p>Aguardando...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div style="text-align: center; margin: 24px 0;">
+            <a href="acompanhar.html" class="email-button">Acompanhar Encomenda</a>
+          </div>
+
+          <div class="email-content">
+            <p>Se tiver alguma dúvida, contacte-nos através:</p>
+            <ul style="margin: 16px 0; padding-left: 24px;">
+              <li>Email: apoio@bertrand.pt</li>
+              <li>Telefone: 707 103 333</li>
+              <li>WhatsApp: +351 910 000 000</li>
+            </ul>
+            <p>Atenciosamente,<br>
+            A Equipa Bertrand</p>
+          </div>
+        </div>
+
+        <!-- Email Footer -->
+        <div class="email-footer">
+          <div class="email-footer-text">
+            Recebeu este email porque fez uma encomenda em bertrand.pt. Se não foi o autor deste pedido, por favor contacte-nos imediatamente.
+          </div>
+          <div class="email-footer-links">
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Termos e Condições</a>
+            <a href="#">Cancelar Subscrição</a>
+          </div>
+          <div style="margin-top: 12px; font-size: 11px; color: #999;">
+            © 2026 Grupo Bertrand Círculo. Todos os direitos reservados.
+          </div>
+        </div>
+      </div>
+
+      <!-- Explanation Box -->
+      <div class="card mt-4" style="background: #e3f2fd; border-left: 4px solid var(--color-blue);">
+        <h4>📧 Análise do Canal Email</h4>
+        <p style="font-size: 14px; margin-bottom: 12px;"><strong>Propósito do Canal:</strong></p>
+        <ul style="font-size: 13px; padding-left: 20px; line-height: 1.7;">
+          <li>Confirmação imediata do pedido - prova transacional</li>
+          <li>Registo detalhado da encomenda para referência futura</li>
+          <li>Informações sobre levantamento (local, horário, previsão)</li>
+          <li>Ligação para acompanhamento em tempo real</li>
+          <li>Canal oficial para comunicação de alterações</li>
+        </ul>
+        <p style="font-size: 13px; margin-top: 12px; color: var(--color-blue);">
+          <strong>Vantagem:</strong> O email serve como comprovativo legal e permite reencaminhamento para partilha com terceiros.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom" style="text-align: center;">
+      <p class="text-muted" style="font-size: 12px;">© 2026 Grupo Bertrand Círculo</p>
+    </div>
+  </footer>
+
+  <!-- Presentation Mode Nav -->
+  <div class="pres-nav-toggle" onclick="togglePresNav()" title="Modo Apresentação">🎯</div>
+  <div class="pres-nav-menu" id="presNavMenu">
+    <div class="pres-nav-menu-title">Modo Apresentação</div>
+    <div class="pres-nav-menu-links">
+      <a href="index.html">1. Home</a>
+      <a href="produto.html">2. Produto</a>
+      <a href="carrinho.html">3. Carrinho</a>
+      <a href="confirmacao.html">4. Confirmação</a>
+      <a href="email-confirmacao.html">5. Email ✉</a>
+      <a href="sms-confirmacao.html">6. SMS 📱</a>
+      <a href="acompanhar.html">7. Acompanhar</a>
+      <a href="email-pronta.html">8. Email Pronto ✉</a>
+      <a href="sms-pronta.html">9. SMS Pronto 📱</a>
+      <a href="apoio.html">10. Apoio</a>
+      <a href="ajuda.html">11. Ajuda</a>
+      <a href="conta.html">12. Conta</a>
+      <a href="backoffice.html">13. Backoffice</a>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    function togglePresNav() {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+  <script>
+    // Handle delivery method display
+    const deliveryMethod = sessionStorage.getItem('orderDelivery');
+    const orderStore = sessionStorage.getItem('orderStore');
+
+    if (deliveryMethod === 'home') {
+      // Show home delivery info
+      const deliveryValue = document.getElementById('deliveryMethodValue');
+      const pickupRow = document.getElementById('pickupLocationRow');
+      const pickupTitle = document.getElementById('pickupInfoTitle');
+      const pickupContent = document.getElementById('pickupInfoContent');
+
+      if (deliveryValue) deliveryValue.textContent = '🚚 Entrega ao Domicílio';
+      if (pickupRow) pickupRow.style.display = 'none';
+      if (pickupTitle) pickupTitle.textContent = '🚚 Informação sobre a Entrega';
+      if (pickupContent) {
+        pickupContent.innerHTML = `
+          <p><strong>Previsão:</strong> 2-3 dias úteis</p>
+          <p style="margin-top: 8px;">A sua encomenda será entregue na morada indicada durante o processo de compra.</p>
+          <p style="margin-top: 8px;">Receberá notificações por email e SMS sobre o estado da entrega.</p>
+        `;
+      }
+
+      // Update timeline for home delivery
+      const timelineSteps = document.querySelectorAll('.timeline-step-email');
+      if (timelineSteps.length >= 4) {
+        const step4 = timelineSteps[3];
+        const step5 = timelineSteps[4] || timelineSteps[3];
+        step4.querySelector('h5').textContent = 'Em rota de entrega';
+        step5.querySelector('h5').textContent = 'Entregue';
+      }
+    } else if (deliveryMethod === 'store' && orderStore) {
+      // Show selected store
+      const pickupValue = document.getElementById('pickupLocationValue');
+      if (pickupValue) pickupValue.textContent = orderStore;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cesto de Compras - Livraria Bertrand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="https://www.bertrand.pt/images/logo-bertrand.svg" alt="Bertrand" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-text" style="display:none;">Bertrand<span class="logo-dot">.</span></span>
+      </a>
+      <div class="search-bar">
+        <input type="search" placeholder="Pesquisar livros, autores...">
+        <button type="button">🔍</button>
+      </div>
+      <div class="header-actions">
+        <a href="conta.html" class="header-btn">👤 Conta</a>
+        <a href="#" class="header-btn">❤️ Lista de desejos</a>
+        <a href="carrinho.html" class="header-btn">
+          🛒 <span class="cart-badge">1</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <div class="section" style="background: var(--color-light); padding: 24px 0;">
+    <div class="container">
+      <h1>Cesto de Compras</h1>
+    </div>
+  </div>
+
+  <!-- Cart Section -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="gap: 32px;">
+        <!-- Cart Items -->
+        <div>
+          <div id="cartItems" class="card">
+            <!-- Empty Cart State -->
+            <div id="emptyCart" class="text-center p-4" style="padding: 48px;">
+              <div style="font-size: 48px; margin-bottom: 16px;">🛒</div>
+              <h3>O seu cesto está vazio</h3>
+              <p class="text-muted mb-4">Adicione livros para continuar</p>
+              <a href="index.html" class="btn btn-accent">Continuar a Comprar</a>
+            </div>
+
+            <!-- Cart Items Container (populated by JS) -->
+            <div id="cartItemsList" style="display: none;"></div>
+          </div>
+
+          <!-- Cart Summary (Mobile) -->
+          <div class="card mt-4" id="cartSummaryMobile" style="display: none;">
+            <h3 class="card-title">Resumo</h3>
+            <div class="flex justify-between mb-2">
+              <span>Subtotal:</span>
+              <span id="cartSubtotalMobile">€16.19</span>
+            </div>
+            <div class="flex justify-between mb-2">
+              <span>Portes:</span>
+              <span class="text-success">Grátis</span>
+            </div>
+            <div class="flex justify-between" style="font-size: 18px; font-weight: 700; border-top: 1px solid var(--border-light); padding-top: 12px; margin-top: 12px;">
+              <span>Total:</span>
+              <span id="cartTotalMobile" style="color: var(--color-red);">€16.19</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkout Panel -->
+        <div>
+          <div class="card">
+            <h3 class="card-title">Resumo do Pedido</h3>
+
+            <!-- Delivery Method -->
+            <div class="form-group">
+              <label class="form-label">Método de Entrega</label>
+              <div class="flex flex-col gap-2">
+                <label class="flex items-center gap-2" style="padding: 12px; border: 1px solid var(--border-light); border-radius: 4px; cursor: pointer; transition: all 0.2s ease;" onclick="selectDelivery('home')">
+                  <input type="radio" name="delivery" value="home" style="margin-right: 8px;" checked>
+                  <div>
+                    <div style="font-weight: 500;">Entrega ao Domicílio</div>
+                    <div style="font-size: 12px; color: var(--color-gray);">2-3 dias úteis</div>
+                  </div>
+                </label>
+                <label class="flex items-center gap-2" style="padding: 12px; border: 1px solid var(--border-light); border-radius: 4px; cursor: pointer; transition: all 0.2s ease; background: var(--color-light);" onclick="selectDelivery('store')">
+                  <input type="radio" name="delivery" value="store" style="margin-right: 8px;">
+                  <div>
+                    <div style="font-weight: 500;">📚 Levantamento em Livraria</div>
+                    <div style="font-size: 12px; color: var(--color-gray);">Grátis - Disponível em 2 horas</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Store Selector (Hidden by default) -->
+            <div id="storeSelector" class="form-group hidden">
+              <label class="form-label">Selecione a Livraria</label>
+              <select id="storeSelect" class="form-select">
+                <option value="">Escolha uma livraria...</option>
+                <option value="Livraria Bertrand Chiado">Livraria Bertrand Chiado - Lisboa</option>
+                <option value="Livraria Bertrand Colombo">Livraria Bertrand Colombo - Lisboa</option>
+                <option value="Livraria Bertrand Norte Shopping">Livraria Bertrand Norte Shopping - Matosinhos</option>
+                <option value="Livraria Bertrand Vasco da Gama">Livraria Bertrand Vasco da Gama</option>
+                <option value="Livraria Bertrand Gaia">Livraria Bertrand Gaia - Porto</option>
+              </select>
+            </div>
+
+            <!-- Customer Form -->
+            <div id="customerForm" class="form-group" style="margin-top: 24px;">
+              <label class="form-label">Dados de Contacto</label>
+              <input type="text" id="nome" class="form-input mb-2" placeholder="Nome completo" required>
+              <input type="email" id="email" class="form-input mb-2" placeholder="Email" required>
+              <input type="tel" id="telemovel" class="form-input" placeholder="Telemóvel" required>
+              <p class="text-muted" style="font-size: 12px; margin-top: 8px;">
+                🔒 Os seus dados estão seguros. Consulte a nossa política de privacidade.
+              </p>
+            </div>
+
+            <!-- Summary -->
+            <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border-light);">
+              <div class="flex justify-between mb-2">
+                <span>Subtotal:</span>
+                <span id="cartSubtotal">€16.19</span>
+              </div>
+              <div class="flex justify-between mb-2">
+                <span>Portes:</span>
+                <span class="text-success">Grátis</span>
+              </div>
+              <div class="flex justify-between" style="font-size: 20px; font-weight: 700; border-top: 1px solid var(--border-light); padding-top: 16px; margin-top: 16px;">
+                <span>Total:</span>
+                <span id="cartTotal" style="color: var(--color-red);">€16.19</span>
+              </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <button type="button" onclick="proceedToCheckout()" class="btn btn-accent" style="width: 100%; margin-top: 24px; padding: 16px; font-size: 16px;">
+              Finalizar Encomenda →
+            </button>
+
+            <!-- Security Badges -->
+            <div class="flex justify-center gap-4 mt-4" style="flex-wrap: wrap;">
+              <span class="badge" style="background: var(--color-light); color: var(--color-gray); font-weight: 400;">🔒 Compras Seguras</span>
+              <span class="badge" style="background: var(--color-light); color: var(--color-gray); font-weight: 400;">💳 Pagamento Seguro</span>
+            </div>
+
+            <!-- Support Link -->
+            <div class="text-center mt-4">
+              <a href="apoio.html" style="font-size: 13px;">Precisa de ajuda? →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="section" style="background: var(--color-light);">
+    <div class="container text-center">
+      <h3 style="margin-bottom: 24px;">Por que comprar na Bertrand?</h3>
+      <div class="grid-4">
+        <div class="text-center p-2">
+          <div style="font-size: 32px; margin-bottom: 8px;">📚</div>
+          <h4>Mais de 300 Anos</h4>
+          <p class="text-muted" style="font-size: 13px;">A livraria mais antiga de Portugal</p>
+        </div>
+        <div class="text-center p-2">
+          <div style="font-size: 32px; margin-bottom: 8px;">🚚</div>
+          <h4>Levantamento Grátis</h4>
+          <p class="text-muted" style="font-size: 13px;">Recolha na livraria sem custos</p>
+        </div>
+        <div class="text-center p-2">
+          <div style="font-size: 32px; margin-bottom: 8px;">🎁</div>
+          <h4>Cartão Leitor</h4>
+          <p class="text-muted" style="font-size: 13px;">Ganhe pontos em cada compra</p>
+        </div>
+        <div class="text-center p-2">
+          <div style="font-size: 32px; margin-bottom: 8px;">✅</div>
+          <h4>Compra Segura</h4>
+          <p class="text-muted" style="font-size: 13px;">Pagamento 100% protegido</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul class="footer-links">
+          <li><a href="apoio.html">Fale com o seu Livreiro</a></li>
+          <li><a href="ajuda.html">Ajuda (FAQ)</a></li>
+          <li><a href="acompanhar.html">Acompanhar Encomenda</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="text-muted" style="font-size: 12px;">© 2026 Grupo Bertrand Círculo</p>
+    </div>
+  </footer>
+
+  <!-- Presentation Mode Nav -->
+  <div class="pres-nav-toggle" onclick="togglePresNav()" title="Modo Apresentação">🎯</div>
+  <div class="pres-nav-menu" id="presNavMenu">
+    <div class="pres-nav-menu-title">Modo Apresentação</div>
+    <div class="pres-nav-menu-links">
+      <a href="index.html">1. Home</a>
+      <a href="produto.html">2. Produto</a>
+      <a href="carrinho.html">3. Carrinho</a>
+      <a href="confirmacao.html">4. Confirmação</a>
+      <a href="email-confirmacao.html">5. Email ✉</a>
+      <a href="sms-confirmacao.html">6. SMS 📱</a>
+      <a href="acompanhar.html">7. Acompanhar</a>
+      <a href="email-pronta.html">8. Email Pronto ✉</a>
+      <a href="sms-pronta.html">9. SMS Pronto 📱</a>
+      <a href="apoio.html">10. Apoio</a>
+      <a href="ajuda.html">11. Ajuda</a>
+      <a href="conta.html">12. Conta</a>
+      <a href="backoffice.html">13. Backoffice</a>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    function togglePresNav() {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) {
+      const toggle = document.querySelector('.pres-nav-toggle');
+      const menu = document.getElementById('presNavMenu');
+      if (toggle && menu && !toggle.contains(e.target) && !menu.contains(e.target)) {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+  <script>
+    // Cart page specific scripts
+    let cart = []; // Will be loaded from sessionStorage in initCart()
+
+    function initCart() {
+      // Always reload cart from sessionStorage to get latest state
+      cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+      renderCart();
+      updateCartDisplay();
+    }
+
+    function renderCart() {
+      const cartItemsList = document.getElementById('cartItemsList');
+      const emptyCart = document.getElementById('emptyCart');
+      const cartSummaryMobile = document.getElementById('cartSummaryMobile');
+
+      if (cart.length > 0) {
+        emptyCart.classList.add('hidden');
+        cartSummaryMobile.style.display = 'block';
+        cartItemsList.style.display = 'block';
+
+        // Build HTML for all cart items
+        let html = '';
+        cart.forEach((item, index) => {
+          // Use stored cover image or default
+          const coverImg = item.coverImage || 'https://img.bertrand.pt/images/educar-sem-pressa-filipa-malo-franco/NDV8MjU1MzQ5ODZ8MjE3ODQ5NjB8MTY0OTA1ODEyNjAwMHx3ZWJw/100x&ctx=0';
+
+          html += `
+            <div style="border-bottom: 1px solid var(--border-light); padding: 16px 0; display: flex; gap: 16px;">
+              <img src="${coverImg}" alt="Capa de ${item.title}" style="border-radius: 4px; width: 80px; height: 120px; object-fit: cover;">
+              <div style="flex: 1;">
+                <h4 style="font-size: 16px; margin-bottom: 4px;">${item.title}</h4>
+                <p style="font-size: 14px; color: var(--color-gray);">${item.author}</p>
+                <div style="margin-top: 8px;">
+                  <span style="font-size: 18px; font-weight: 700; color: var(--color-red);">€${item.price.toFixed(2)}</span>
+                </div>
+              </div>
+              <div class="flex-col items-center" style="justify-content: center; gap: 8px;">
+                <span style="font-size: 14px;">Qtd:</span>
+                <span style="font-size: 16px; font-weight: 600;">${item.quantity}</span>
+              </div>
+              <button class="btn btn-ghost" onclick="removeFromCart(${index})">✕</button>
+            </div>
+          `;
+        });
+        cartItemsList.innerHTML = html;
+      } else {
+        emptyCart.classList.remove('hidden');
+        cartSummaryMobile.style.display = 'none';
+        cartItemsList.style.display = 'none';
+      }
+    }
+
+    function updateCartDisplay() {
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      // Update all total elements
+      if (document.getElementById('cartTotal')) {
+        document.getElementById('cartTotal').textContent = '€' + total.toFixed(2);
+      }
+      if (document.getElementById('cartTotalMobile')) {
+        document.getElementById('cartTotalMobile').textContent = '€' + total.toFixed(2);
+      }
+      if (document.getElementById('cartSubtotal')) {
+        document.getElementById('cartSubtotal').textContent = '€' + total.toFixed(2);
+      }
+      if (document.getElementById('cartSubtotalMobile')) {
+        document.getElementById('cartSubtotalMobile').textContent = '€' + total.toFixed(2);
+      }
+
+      // Update cart badge in header
+      const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.querySelectorAll('.cart-badge').forEach(badge => {
+        badge.textContent = totalQty;
+      });
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      sessionStorage.setItem('cart', JSON.stringify(cart));
+
+      // Re-render cart and update totals
+      renderCart();
+      updateCartDisplay();
+
+      // Update cart badge in header
+      const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.querySelectorAll('.cart-badge').forEach(badge => {
+        badge.textContent = total;
+      });
+
+      if (cart.length === 0) {
+        sessionStorage.removeItem('cart');
+      }
+    }
+
+    function selectDelivery(type) {
+      const storeSelector = document.getElementById('storeSelector');
+      const radioInputs = document.querySelectorAll('input[name="delivery"]');
+
+      if (type === 'store') {
+        storeSelector.classList.remove('hidden');
+      } else {
+        storeSelector.classList.add('hidden');
+      }
+
+      // Update styles
+      radioInputs.forEach(input => {
+        const label = input.parentElement;
+        if (input.value === type) {
+          label.style.background = 'var(--color-light)';
+        } else {
+          label.style.background = 'var(--color-white)';
+        }
+      });
+    }
+
+    function proceedToCheckout() {
+      if (cart.length === 0) {
+        alert('O seu cesto está vazio!');
+        return;
+      }
+
+      const deliveryMethod = document.querySelector('input[name="delivery"]:checked')?.value;
+      if (!deliveryMethod) {
+        alert('Por favor selecione um método de entrega.');
+        return;
+      }
+
+      if (deliveryMethod === 'store') {
+        const store = document.getElementById('storeSelect').value;
+        if (!store) {
+          alert('Por favor selecione a livraria.');
+          return;
+        }
+      }
+
+      const nome = document.getElementById('nome')?.value;
+      const email = document.getElementById('email')?.value;
+      const phone = document.getElementById('telemovel')?.value;
+
+      if (!nome || !email || !phone) {
+        alert('Por favor preencha todos os campos.');
+        return;
+      }
+
+      // Store form data
+      sessionStorage.setItem('orderDelivery', deliveryMethod);
+      sessionStorage.setItem('orderStore', document.getElementById('storeSelect').value || '');
+      sessionStorage.setItem('orderName', nome);
+      sessionStorage.setItem('orderEmail', email);
+      sessionStorage.setItem('orderPhone', phone);
+
+      // Clear cart after storing order info
+      sessionStorage.removeItem('cart');
+
+      window.location.href = 'confirmacao.html';
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCart);
+    } else {
+      initCart();
+    }
+  </script>
+</body>
+</html>
