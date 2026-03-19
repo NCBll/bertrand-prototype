@@ -8,7 +8,7 @@
 .mcp.json
 .mcp/
 
-# Playwright logs
+# Playwright logs and screenshots
 .playwright-mcp/
 
 # Python cache
@@ -19,3 +19,6 @@ __pycache__/
 *.png
 *.jpg
 *.jpeg
+
+# Old research files (not for repo)
+README.md
